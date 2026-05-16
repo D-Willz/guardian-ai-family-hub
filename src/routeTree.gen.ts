@@ -19,6 +19,7 @@ import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppContractsRouteImport } from './routes/_app/contracts'
 import { Route as AppBehaviorAlertsRouteImport } from './routes/_app/behavior-alerts'
 import { Route as AppAppMonitoringRouteImport } from './routes/_app/app-monitoring'
+import { Route as AppChildChildIdRouteImport } from './routes/_app/child.$childId'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -69,6 +70,11 @@ const AppAppMonitoringRoute = AppAppMonitoringRouteImport.update({
   path: '/app-monitoring',
   getParentRoute: () => AppRoute,
 } as any)
+const AppChildChildIdRoute = AppChildChildIdRouteImport.update({
+  id: '/child/$childId',
+  path: '/child/$childId',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/filters': typeof AppFiltersRoute
   '/settings': typeof AppSettingsRoute
   '/wellness': typeof AppWellnessRoute
+  '/child/$childId': typeof AppChildChildIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/filters': typeof AppFiltersRoute
   '/settings': typeof AppSettingsRoute
   '/wellness': typeof AppWellnessRoute
+  '/child/$childId': typeof AppChildChildIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/_app/filters': typeof AppFiltersRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/wellness': typeof AppWellnessRoute
+  '/_app/child/$childId': typeof AppChildChildIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/filters'
     | '/settings'
     | '/wellness'
+    | '/child/$childId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/filters'
     | '/settings'
     | '/wellness'
+    | '/child/$childId'
   id:
     | '__root__'
     | '/'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/_app/filters'
     | '/_app/settings'
     | '/_app/wellness'
+    | '/_app/child/$childId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -220,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAppMonitoringRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/child/$childId': {
+      id: '/_app/child/$childId'
+      path: '/child/$childId'
+      fullPath: '/child/$childId'
+      preLoaderRoute: typeof AppChildChildIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -231,6 +250,7 @@ interface AppRouteChildren {
   AppFiltersRoute: typeof AppFiltersRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppWellnessRoute: typeof AppWellnessRoute
+  AppChildChildIdRoute: typeof AppChildChildIdRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -241,6 +261,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppFiltersRoute: AppFiltersRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppWellnessRoute: AppWellnessRoute,
+  AppChildChildIdRoute: AppChildChildIdRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
@@ -253,3 +274,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
