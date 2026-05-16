@@ -9,38 +9,161 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppWellnessRouteImport } from './routes/_app/wellness'
+import { Route as AppSettingsRouteImport } from './routes/_app/settings'
+import { Route as AppFiltersRouteImport } from './routes/_app/filters'
+import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppContractsRouteImport } from './routes/_app/contracts'
+import { Route as AppBehaviorAlertsRouteImport } from './routes/_app/behavior-alerts'
+import { Route as AppAppMonitoringRouteImport } from './routes/_app/app-monitoring'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppWellnessRoute = AppWellnessRouteImport.update({
+  id: '/wellness',
+  path: '/wellness',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFiltersRoute = AppFiltersRouteImport.update({
+  id: '/filters',
+  path: '/filters',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppContractsRoute = AppContractsRouteImport.update({
+  id: '/contracts',
+  path: '/contracts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBehaviorAlertsRoute = AppBehaviorAlertsRouteImport.update({
+  id: '/behavior-alerts',
+  path: '/behavior-alerts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAppMonitoringRoute = AppAppMonitoringRouteImport.update({
+  id: '/app-monitoring',
+  path: '/app-monitoring',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/app-monitoring': typeof AppAppMonitoringRoute
+  '/behavior-alerts': typeof AppBehaviorAlertsRoute
+  '/contracts': typeof AppContractsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/filters': typeof AppFiltersRoute
+  '/settings': typeof AppSettingsRoute
+  '/wellness': typeof AppWellnessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/app-monitoring': typeof AppAppMonitoringRoute
+  '/behavior-alerts': typeof AppBehaviorAlertsRoute
+  '/contracts': typeof AppContractsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/filters': typeof AppFiltersRoute
+  '/settings': typeof AppSettingsRoute
+  '/wellness': typeof AppWellnessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_app/app-monitoring': typeof AppAppMonitoringRoute
+  '/_app/behavior-alerts': typeof AppBehaviorAlertsRoute
+  '/_app/contracts': typeof AppContractsRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/filters': typeof AppFiltersRoute
+  '/_app/settings': typeof AppSettingsRoute
+  '/_app/wellness': typeof AppWellnessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/app-monitoring'
+    | '/behavior-alerts'
+    | '/contracts'
+    | '/dashboard'
+    | '/filters'
+    | '/settings'
+    | '/wellness'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/app-monitoring'
+    | '/behavior-alerts'
+    | '/contracts'
+    | '/dashboard'
+    | '/filters'
+    | '/settings'
+    | '/wellness'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/auth'
+    | '/_app/app-monitoring'
+    | '/_app/behavior-alerts'
+    | '/_app/contracts'
+    | '/_app/dashboard'
+    | '/_app/filters'
+    | '/_app/settings'
+    | '/_app/wellness'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +171,85 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/wellness': {
+      id: '/_app/wellness'
+      path: '/wellness'
+      fullPath: '/wellness'
+      preLoaderRoute: typeof AppWellnessRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/filters': {
+      id: '/_app/filters'
+      path: '/filters'
+      fullPath: '/filters'
+      preLoaderRoute: typeof AppFiltersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/contracts': {
+      id: '/_app/contracts'
+      path: '/contracts'
+      fullPath: '/contracts'
+      preLoaderRoute: typeof AppContractsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/behavior-alerts': {
+      id: '/_app/behavior-alerts'
+      path: '/behavior-alerts'
+      fullPath: '/behavior-alerts'
+      preLoaderRoute: typeof AppBehaviorAlertsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/app-monitoring': {
+      id: '/_app/app-monitoring'
+      path: '/app-monitoring'
+      fullPath: '/app-monitoring'
+      preLoaderRoute: typeof AppAppMonitoringRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAppMonitoringRoute: typeof AppAppMonitoringRoute
+  AppBehaviorAlertsRoute: typeof AppBehaviorAlertsRoute
+  AppContractsRoute: typeof AppContractsRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppFiltersRoute: typeof AppFiltersRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppWellnessRoute: typeof AppWellnessRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAppMonitoringRoute: AppAppMonitoringRoute,
+  AppBehaviorAlertsRoute: AppBehaviorAlertsRoute,
+  AppContractsRoute: AppContractsRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppFiltersRoute: AppFiltersRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppWellnessRoute: AppWellnessRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
