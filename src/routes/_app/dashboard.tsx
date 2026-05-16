@@ -1,5 +1,16 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Smartphone, Bell, HeartPulse, Clock } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { Smartphone, Bell, HeartPulse, Clock, Plus, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { AddChildDialog } from "@/components/AddChildDialog";
+import {
+  type Child,
+  CHILD_LIMIT_FREE,
+  colorClass,
+  initialsOf,
+  listChildren,
+} from "@/lib/children";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/_app/dashboard")({
   component: Dashboard,
@@ -13,6 +24,33 @@ const stats = [
 ];
 
 function Dashboard() {
+  const [children, setChildren] = useState<Child[]>([]);
+  const [loadingKids, setLoadingKids] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
+
+  const refresh = () => {
+    setLoadingKids(true);
+    listChildren()
+      .then(setChildren)
+      .catch((e) => toast.error(e instanceof Error ? e.message : "Could not load profiles"))
+      .finally(() => setLoadingKids(false));
+  };
+
+  useEffect(() => {
+    refresh();
+  }, []);
+
+  const atLimit = children.length >= CHILD_LIMIT_FREE;
+
+  const handleAddClick = () => {
+    if (atLimit) {
+      setUpgradeOpen(true);
+      return;
+    }
+    setDialogOpen(true);
+  };
+
   return (
     <div>
       <header className="mb-8">
@@ -25,6 +63,69 @@ function Dashboard() {
         </p>
       </header>
 
+      {/* Children */}
+      <section className="mb-10">
+        <div className="mb-4 flex items-center justify-between">
+          <div>
+            <h2 className="text-base font-semibold text-foreground">Children</h2>
+            <p className="text-xs text-muted-foreground">
+              {children.length} of {CHILD_LIMIT_FREE} profiles on the free plan
+            </p>
+          </div>
+          <Button onClick={handleAddClick} size="sm" className="gap-1.5">
+            <Plus className="h-4 w-4" /> Add child
+          </Button>
+        </div>
+
+        {loadingKids ? (
+          <p className="text-sm text-muted-foreground">Loading profiles…</p>
+        ) : children.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-border bg-card p-8 text-center">
+            <p className="text-sm font-medium text-foreground">No profiles yet</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Add your first child to start building healthy digital habits together.
+            </p>
+            <Button onClick={handleAddClick} className="mt-4 gap-1.5">
+              <Plus className="h-4 w-4" /> Add child
+            </Button>
+          </div>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {children.map((c) => (
+              <div
+                key={c.id}
+                className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`flex h-12 w-12 items-center justify-center rounded-2xl text-lg font-semibold ${colorClass(
+                      c.avatar_color,
+                    )}`}
+                  >
+                    {initialsOf(c.first_name)}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="truncate font-semibold text-foreground">{c.first_name}</p>
+                    <p className="text-xs text-muted-foreground">Age {c.age}</p>
+                  </div>
+                </div>
+                <Button
+                  asChild
+                  variant="secondary"
+                  size="sm"
+                  className="mt-4 w-full rounded-xl"
+                >
+                  <Link to="/child/$childId" params={{ childId: c.id }}>
+                    View
+                  </Link>
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Family stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((s) => (
           <div
@@ -74,6 +175,45 @@ function Dashboard() {
           <button className="mt-4 rounded-xl bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90">
             Start a contract
           </button>
+        </div>
+      </div>
+
+      <AddChildDialog open={dialogOpen} onOpenChange={setDialogOpen} onAdded={refresh} />
+
+      {/* Upgrade prompt */}
+      {upgradeOpen && (
+        <UpgradePrompt onClose={() => setUpgradeOpen(false)} />
+      )}
+    </div>
+  );
+}
+
+function UpgradePrompt({ onClose }: { onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 px-4"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-md rounded-2xl border border-border bg-card p-6 shadow-lg"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+          <Sparkles className="h-5 w-5" />
+        </div>
+        <h3 className="text-lg font-semibold text-foreground">
+          You've reached the free family limit
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          The free plan supports up to {CHILD_LIMIT_FREE} children. Upgrade to Guardian AI
+          Family to add more profiles and unlock deeper wellness insights — gently, at your
+          pace.
+        </p>
+        <div className="mt-5 flex justify-end gap-2">
+          <Button variant="ghost" onClick={onClose}>
+            Not now
+          </Button>
+          <Button onClick={onClose}>Explore Family plan</Button>
         </div>
       </div>
     </div>
