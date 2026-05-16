@@ -108,7 +108,7 @@ function AuthPage() {
                 placeholder="••••••••"
               />
             </div>
-            <Button type="submit" className="w-full rounded-xl" disabled={loading}>
+            <Button type="submit" className="w-full rounded-xl" disabled={!isReady || loading}>
               {!isReady || loading ? "Please wait…" : isSignup ? "Create account" : "Sign in"}
             </Button>
           </div>
