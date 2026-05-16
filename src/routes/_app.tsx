@@ -17,6 +17,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useAuthReady } from "@/lib/auth";
 import { cn } from "@/lib/utils";
+import { listChildren, type Child } from "@/lib/children";
+import { generateAlerts, useDismissed } from "@/lib/alerts";
 
 export const Route = createFileRoute("/_app")({
   component: AppShell,
@@ -37,6 +39,8 @@ function AppShell() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { isReady, user } = useAuthReady();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [children, setChildren] = useState<Child[]>([]);
+  const { dismissed } = useDismissed();
 
   useEffect(() => setMobileOpen(false), [pathname]);
   useEffect(() => {
@@ -44,6 +48,12 @@ function AppShell() {
       navigate({ to: "/auth" });
     }
   }, [isReady, user, navigate]);
+  useEffect(() => {
+    if (!user) return;
+    listChildren().then(setChildren).catch(() => setChildren([]));
+  }, [user]);
+
+  const alertCount = generateAlerts(children).filter((a) => !dismissed.has(a.id)).length;
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -112,7 +122,12 @@ function AppShell() {
                 )}
               >
                 <item.icon className="h-4 w-4" />
-                {item.label}
+                <span className="flex-1">{item.label}</span>
+                {item.to === "/behavior-alerts" && alertCount > 0 && (
+                  <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-500 px-1.5 text-xs font-semibold text-white">
+                    {alertCount}
+                  </span>
+                )}
               </Link>
             );
           })}
