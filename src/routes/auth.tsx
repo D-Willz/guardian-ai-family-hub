@@ -1,4 +1,4 @@
-import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Shield } from "lucide-react";
 import { z } from "zod";
@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuthReady } from "@/lib/auth";
 import { toast } from "sonner";
 
 const searchSchema = z.object({
@@ -14,13 +15,6 @@ const searchSchema = z.object({
 
 export const Route = createFileRoute("/auth")({
   validateSearch: searchSchema,
-  beforeLoad: async () => {
-    if (typeof window === "undefined") return;
-    const { data } = await supabase.auth.getSession();
-    if (data.session) {
-      throw redirect({ to: "/dashboard" });
-    }
-  },
   head: () => ({
     meta: [{ title: "Sign in — Guardian AI" }],
   }),
@@ -30,12 +24,18 @@ export const Route = createFileRoute("/auth")({
 function AuthPage() {
   const { mode } = Route.useSearch();
   const navigate = useNavigate();
+  const { isReady, user } = useAuthReady();
   const [isSignup, setIsSignup] = useState(mode === "signup");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => setIsSignup(mode === "signup"), [mode]);
+  useEffect(() => {
+    if (isReady && user) {
+      navigate({ to: "/dashboard" });
+    }
+  }, [isReady, user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -109,7 +109,7 @@ function AuthPage() {
               />
             </div>
             <Button type="submit" className="w-full rounded-xl" disabled={loading}>
-              {loading ? "Please wait…" : isSignup ? "Create account" : "Sign in"}
+              {!isReady || loading ? "Please wait…" : isSignup ? "Create account" : "Sign in"}
             </Button>
           </div>
         </form>
