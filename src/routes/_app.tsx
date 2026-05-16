@@ -1,4 +1,4 @@
-import { createFileRoute, redirect, Outlet, Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Outlet, Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   LayoutDashboard,
@@ -15,16 +15,10 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { useAuthReady } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_app")({
-  beforeLoad: async () => {
-    if (typeof window === "undefined") return;
-    const { data } = await supabase.auth.getSession();
-    if (!data.session) {
-      throw redirect({ to: "/auth" });
-    }
-  },
   component: AppShell,
 });
 
@@ -41,14 +35,31 @@ const navItems = [
 function AppShell() {
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { isReady, user } = useAuthReady();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => setMobileOpen(false), [pathname]);
+  useEffect(() => {
+    if (isReady && !user) {
+      navigate({ to: "/auth" });
+    }
+  }, [isReady, user, navigate]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate({ to: "/" });
   };
+
+  if (!isReady || !user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background px-4">
+        <div className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground shadow-sm">
+          <Shield className="h-5 w-5 text-primary" />
+          Loading your dashboard…
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen w-full bg-background">
