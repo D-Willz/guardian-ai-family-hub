@@ -16,7 +16,17 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Build healthier digital habits as a family with Guardian AI.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { property: "og:site_name", content: "Guardian AI" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Guardian AI — Raise digital-savvy kids, together." },
+      {
+        name: "twitter:description",
+        content: "Build healthier digital habits as a family with Guardian AI.",
+      },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: Landing,
 });
