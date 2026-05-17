@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shield, Heart, Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -121,6 +122,7 @@ function Landing() {
           />
         </section>
       </main>
+      <SiteFooter />
     </div>
   );
 }

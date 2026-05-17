@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils";
 import { listChildren, type Child } from "@/lib/children";
 import { generateAlerts, useDismissed } from "@/lib/alerts";
 import { OnboardingFlow } from "@/components/OnboardingFlow";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/_app")({
   component: AppShell,
@@ -156,10 +157,11 @@ function AppShell() {
         />
       )}
 
-      <main className="flex-1 pt-14 md:ml-64 md:pt-0">
-        <div className="mx-auto max-w-6xl px-4 py-6 md:px-8 md:py-10">
+      <main className="flex-1 pt-14 md:ml-64 md:pt-0 flex flex-col">
+        <div className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 md:px-8 md:py-10">
           <Outlet />
         </div>
+        <SiteFooter />
       </main>
 
       <OnboardingFlow
