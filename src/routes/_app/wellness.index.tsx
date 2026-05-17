@@ -6,7 +6,7 @@ import { listChildren, colorClass, initialsOf, type Child } from "@/lib/children
 import { pastWeeks, computeWeekStats, summaryLine } from "@/lib/wellness";
 import { generateAlerts, useDismissed } from "@/lib/alerts";
 
-export const Route = createFileRoute("/_app/wellness")({
+export const Route = createFileRoute("/_app/wellness/")({
   component: WellnessPage,
 });
 
