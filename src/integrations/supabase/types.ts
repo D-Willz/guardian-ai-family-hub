@@ -41,6 +41,53 @@ export type Database = {
         }
         Relationships: []
       }
+      contracts: {
+        Row: {
+          category_rules: Json
+          child_id: string
+          created_at: string
+          daily_limits: Json
+          expires_at: string | null
+          id: string
+          parent_id: string
+          reward: string | null
+          share_token: string
+          status: string
+        }
+        Insert: {
+          category_rules?: Json
+          child_id: string
+          created_at?: string
+          daily_limits?: Json
+          expires_at?: string | null
+          id?: string
+          parent_id: string
+          reward?: string | null
+          share_token?: string
+          status?: string
+        }
+        Update: {
+          category_rules?: Json
+          child_id?: string
+          created_at?: string
+          daily_limits?: Json
+          expires_at?: string | null
+          id?: string
+          parent_id?: string
+          reward?: string | null
+          share_token?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contracts_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
