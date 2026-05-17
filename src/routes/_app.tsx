@@ -161,6 +161,12 @@ function AppShell() {
           <Outlet />
         </div>
       </main>
+
+      <OnboardingFlow
+        userId={user.id}
+        hasChildren={children.length > 0}
+        onChildAdded={refreshChildren}
+      />
     </div>
   );
 }
