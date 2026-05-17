@@ -62,7 +62,7 @@ export async function getFilter(childId: string): Promise<ContentFilter | null> 
     .eq("child_id", childId)
     .maybeSingle();
   if (error) throw error;
-  return data as ContentFilter | null;
+  return data as unknown as ContentFilter | null;
 }
 
 export async function saveFilter(input: {
@@ -84,7 +84,7 @@ export async function saveFilter(input: {
     .select()
     .single();
   if (error) throw error;
-  return data as ContentFilter;
+  return data as unknown as ContentFilter;
 }
 
 export function normalizeDomain(input: string): string | null {
