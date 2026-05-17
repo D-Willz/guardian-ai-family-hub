@@ -41,6 +41,50 @@ export type Database = {
         }
         Relationships: []
       }
+      content_filters: {
+        Row: {
+          age_preset: string | null
+          blocked_sites: string[]
+          category_states: Json
+          child_id: string
+          created_at: string
+          id: string
+          parent_id: string
+          safe_search: boolean
+          updated_at: string
+        }
+        Insert: {
+          age_preset?: string | null
+          blocked_sites?: string[]
+          category_states?: Json
+          child_id: string
+          created_at?: string
+          id?: string
+          parent_id: string
+          safe_search?: boolean
+          updated_at?: string
+        }
+        Update: {
+          age_preset?: string | null
+          blocked_sites?: string[]
+          category_states?: Json
+          child_id?: string
+          created_at?: string
+          id?: string
+          parent_id?: string
+          safe_search?: boolean
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_filters_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: true
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contracts: {
         Row: {
           category_rules: Json
