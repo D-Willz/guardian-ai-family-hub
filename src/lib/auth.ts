@@ -13,14 +13,32 @@ export function useAuthReady() {
 
   useEffect(() => {
     let mounted = true;
+    let initialSessionRestored = false;
 
-    supabase.auth.getSession().then(({ data }) => {
+    const restoreSession = async () => {
+      try {
+        const { data } = await supabase.auth.getSession();
+        initialSessionRestored = true;
+        if (!mounted) return;
+        setUser(data.session?.user ?? null);
+        setIsReady(true);
+      } catch {
+        initialSessionRestored = true;
+        if (!mounted) return;
+        setUser(null);
+        setIsReady(true);
+      }
+    };
+
+    void restoreSession();
+
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
       if (!mounted) return;
-      setUser(data.session?.user ?? null);
-      setIsReady(true);
-    });
 
-    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (event === "INITIAL_SESSION" && !initialSessionRestored) {
+        return;
+      }
+
       setUser(session?.user ?? null);
       setIsReady(true);
     });
