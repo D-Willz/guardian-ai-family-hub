@@ -1,4 +1,5 @@
-import { createFileRoute, useParams, useServerFn } from "@tanstack/react-router";
+import { createFileRoute, useParams } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { Shield } from "lucide-react";
 import { getPublicContract } from "@/lib/contracts-public.functions";
