@@ -111,7 +111,7 @@ function ReportPage() {
       .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [child?.id, week?.key]);
+  }, [child?.id, week?.key, retryNonce]);
 
   if (!child || !week || !stats) {
     return <div className="text-sm text-muted-foreground">Loading report…</div>;
