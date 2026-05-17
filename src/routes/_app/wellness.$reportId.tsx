@@ -167,8 +167,14 @@ function ReportPage() {
 
       {error && (
         <Card className="border-destructive/30 bg-destructive/5">
-          <CardContent className="p-4 text-sm text-destructive">
-            Couldn't generate AI insights: {error}
+          <CardContent className="flex flex-wrap items-center justify-between gap-3 p-4 text-sm text-destructive">
+            <span>Couldn't load insights right now — {error}</span>
+            <Button size="sm" variant="outline" onClick={() => setRetryNonce((n) => n + 1)}>
+              Try again
+            </Button>
+          </CardContent>
+        </Card>
+      )}
           </CardContent>
         </Card>
       )}
