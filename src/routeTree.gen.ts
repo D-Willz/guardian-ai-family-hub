@@ -20,6 +20,7 @@ import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppContractsRouteImport } from './routes/_app/contracts'
 import { Route as AppBehaviorAlertsRouteImport } from './routes/_app/behavior-alerts'
 import { Route as AppAppMonitoringRouteImport } from './routes/_app/app-monitoring'
+import { Route as AppWellnessIndexRouteImport } from './routes/_app/wellness.index'
 import { Route as AppWellnessReportIdRouteImport } from './routes/_app/wellness.$reportId'
 import { Route as AppChildChildIdRouteImport } from './routes/_app/child.$childId'
 
@@ -77,6 +78,11 @@ const AppAppMonitoringRoute = AppAppMonitoringRouteImport.update({
   path: '/app-monitoring',
   getParentRoute: () => AppRoute,
 } as any)
+const AppWellnessIndexRoute = AppWellnessIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppWellnessRoute,
+} as any)
 const AppWellnessReportIdRoute = AppWellnessReportIdRouteImport.update({
   id: '/$reportId',
   path: '/$reportId',
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/c/$token': typeof CTokenRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
+  '/wellness/': typeof AppWellnessIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -111,10 +118,10 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AppDashboardRoute
   '/filters': typeof AppFiltersRoute
   '/settings': typeof AppSettingsRoute
-  '/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
+  '/wellness': typeof AppWellnessIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -131,6 +138,7 @@ export interface FileRoutesById {
   '/c/$token': typeof CTokenRoute
   '/_app/child/$childId': typeof AppChildChildIdRoute
   '/_app/wellness/$reportId': typeof AppWellnessReportIdRoute
+  '/_app/wellness/': typeof AppWellnessIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -147,6 +155,7 @@ export interface FileRouteTypes {
     | '/c/$token'
     | '/child/$childId'
     | '/wellness/$reportId'
+    | '/wellness/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -157,10 +166,10 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/filters'
     | '/settings'
-    | '/wellness'
     | '/c/$token'
     | '/child/$childId'
     | '/wellness/$reportId'
+    | '/wellness'
   id:
     | '__root__'
     | '/'
@@ -176,6 +185,7 @@ export interface FileRouteTypes {
     | '/c/$token'
     | '/_app/child/$childId'
     | '/_app/wellness/$reportId'
+    | '/_app/wellness/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -264,6 +274,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAppMonitoringRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/wellness/': {
+      id: '/_app/wellness/'
+      path: '/'
+      fullPath: '/wellness/'
+      preLoaderRoute: typeof AppWellnessIndexRouteImport
+      parentRoute: typeof AppWellnessRoute
+    }
     '/_app/wellness/$reportId': {
       id: '/_app/wellness/$reportId'
       path: '/$reportId'
@@ -283,10 +300,12 @@ declare module '@tanstack/react-router' {
 
 interface AppWellnessRouteChildren {
   AppWellnessReportIdRoute: typeof AppWellnessReportIdRoute
+  AppWellnessIndexRoute: typeof AppWellnessIndexRoute
 }
 
 const AppWellnessRouteChildren: AppWellnessRouteChildren = {
   AppWellnessReportIdRoute: AppWellnessReportIdRoute,
+  AppWellnessIndexRoute: AppWellnessIndexRoute,
 }
 
 const AppWellnessRouteWithChildren = AppWellnessRoute._addFileChildren(

@@ -53,6 +53,7 @@ function ReportPage() {
   const [insights, setInsights] = useState<WellnessInsights | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retryNonce, setRetryNonce] = useState(0);
   const { dismissed } = useDismissed();
   const callAI = useServerFn(generateWellnessReport);
 
@@ -110,7 +111,7 @@ function ReportPage() {
       .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [child?.id, week?.key]);
+  }, [child?.id, week?.key, retryNonce]);
 
   if (!child || !week || !stats) {
     return <div className="text-sm text-muted-foreground">Loading report…</div>;
@@ -166,8 +167,11 @@ function ReportPage() {
 
       {error && (
         <Card className="border-destructive/30 bg-destructive/5">
-          <CardContent className="p-4 text-sm text-destructive">
-            Couldn't generate AI insights: {error}
+          <CardContent className="flex flex-wrap items-center justify-between gap-3 p-4 text-sm text-destructive">
+            <span>Couldn't load insights right now — {error}</span>
+            <Button size="sm" variant="outline" onClick={() => setRetryNonce((n) => n + 1)}>
+              Try again
+            </Button>
           </CardContent>
         </Card>
       )}
