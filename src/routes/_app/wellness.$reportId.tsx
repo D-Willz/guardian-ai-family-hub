@@ -53,6 +53,7 @@ function ReportPage() {
   const [insights, setInsights] = useState<WellnessInsights | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retryNonce, setRetryNonce] = useState(0);
   const { dismissed } = useDismissed();
   const callAI = useServerFn(generateWellnessReport);
 
