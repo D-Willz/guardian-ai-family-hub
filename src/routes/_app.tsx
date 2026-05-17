@@ -19,6 +19,7 @@ import { useAuthReady } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 import { listChildren, type Child } from "@/lib/children";
 import { generateAlerts, useDismissed } from "@/lib/alerts";
+import { OnboardingFlow } from "@/components/OnboardingFlow";
 
 export const Route = createFileRoute("/_app")({
   component: AppShell,
@@ -52,6 +53,10 @@ function AppShell() {
     if (!user) return;
     listChildren().then(setChildren).catch(() => setChildren([]));
   }, [user]);
+
+  const refreshChildren = () => {
+    listChildren().then(setChildren).catch(() => setChildren([]));
+  };
 
   const alertCount = generateAlerts(children).filter((a) => !dismissed.has(a.id)).length;
 
@@ -156,6 +161,12 @@ function AppShell() {
           <Outlet />
         </div>
       </main>
+
+      <OnboardingFlow
+        userId={user.id}
+        hasChildren={children.length > 0}
+        onChildAdded={refreshChildren}
+      />
     </div>
   );
 }
