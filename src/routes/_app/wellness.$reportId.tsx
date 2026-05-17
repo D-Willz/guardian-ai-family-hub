@@ -175,9 +175,6 @@ function ReportPage() {
           </CardContent>
         </Card>
       )}
-          </CardContent>
-        </Card>
-      )}
 
       <Card>
         <CardHeader>
