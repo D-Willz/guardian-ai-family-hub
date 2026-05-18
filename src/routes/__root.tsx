@@ -76,11 +76,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Guardian AI — Raise digital-savvy kids, together." },
       { name: "description", content: "An AI-powered parental dashboard for healthier digital habits." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Guardian AI — Raise digital-savvy kids, together." },
+      { property: "og:description", content: "An AI-powered parental dashboard for healthier digital habits." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Guardian AI — Raise digital-savvy kids, together." },
+      { name: "twitter:description", content: "An AI-powered parental dashboard for healthier digital habits." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/04622315-a094-4893-8d7a-bca291495522" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/04622315-a094-4893-8d7a-bca291495522" },
     ],
     links: [
       {
