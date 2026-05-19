@@ -16,6 +16,7 @@ export const Route = createFileRoute("/privacy")({
         content: "How Guardian AI handles family data — clearly and simply.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/privacy" }],
   }),
   component: PrivacyPage,
 });

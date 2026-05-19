@@ -16,6 +16,7 @@ export const Route = createFileRoute("/terms")({
         content: "The simple terms for using Guardian AI.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/terms" }],
   }),
   component: TermsPage,
 });

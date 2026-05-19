@@ -16,7 +16,13 @@ const searchSchema = z.object({
 export const Route = createFileRoute("/auth")({
   validateSearch: searchSchema,
   head: () => ({
-    meta: [{ title: "Sign in — Guardian AI" }],
+    meta: [
+      { title: "Sign in — Guardian AI" },
+      { name: "description", content: "Sign in or create your Guardian AI account to start raising digital-savvy kids." },
+      { property: "og:title", content: "Sign in — Guardian AI" },
+      { property: "og:description", content: "Sign in or create your Guardian AI account." },
+    ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/auth" }],
   }),
   component: AuthPage,
 });
