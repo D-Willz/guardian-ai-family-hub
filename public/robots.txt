@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /wellness
+Disallow: /contracts
+Disallow: /filters
+Disallow: /behavior-alerts
+Disallow: /app-monitoring
+Disallow: /child/
+Disallow: /c/
+
+Sitemap: https://guardian-ai-family-hub.lovable.app/sitemap.xml
