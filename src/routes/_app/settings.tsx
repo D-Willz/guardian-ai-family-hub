@@ -101,11 +101,6 @@ function SettingsPage() {
     }
   };
 
-  const handleUpgrade = () => {
-    toast.info("Opening checkout…", {
-      description: "Stripe checkout is coming soon.",
-    });
-  };
 
   return (
     <div className="space-y-8">
