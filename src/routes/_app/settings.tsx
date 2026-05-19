@@ -206,29 +206,25 @@ function SettingsPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3">
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-semibold text-foreground">
-                    Free plan
-                  </span>
-                  <Badge variant="secondary" className="rounded-full">
-                    Current
-                  </Badge>
-                </div>
-                <p className="mt-0.5 text-sm text-muted-foreground">
-                  Up to 2 children, weekly wellness reports.
-                </p>
-              </div>
-            </div>
-            <Button onClick={handleUpgrade} className="gap-1.5">
-              <Sparkles className="h-4 w-4" /> Upgrade to Pro
-            </Button>
+          <div className="flex items-center gap-3">
+            <span className="text-lg font-semibold text-foreground">Free plan</span>
+            <Badge variant="secondary" className="rounded-full">
+              Current
+            </Badge>
           </div>
+          <p className="mt-0.5 text-sm text-muted-foreground">
+            Up to 2 children, weekly wellness reports.
+          </p>
 
           <div className="mt-5 rounded-xl border border-border bg-secondary/40 p-4">
-            <p className="text-sm font-medium text-foreground">Pro includes</p>
+            <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+              <Sparkles className="h-4 w-4 text-primary" />
+              Pro features coming soon — stay tuned!
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Guardian AI is currently free to use. No credit card required.
+            </p>
+            <p className="mt-4 text-sm font-medium text-foreground">Pro will include</p>
             <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
               {[
                 "Up to 6 children",
