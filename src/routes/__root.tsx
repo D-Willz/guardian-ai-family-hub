@@ -85,6 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "An AI-powered parental dashboard for healthier digital habits." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/04622315-a094-4893-8d7a-bca291495522" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/04622315-a094-4893-8d7a-bca291495522" },
+      { name: "google-site-verification", content: "-jRFnInN0B_3sM6uzgg86gRkpMmcjNNkyHXYQ9eZkEM" },
     ],
     links: [
       {
