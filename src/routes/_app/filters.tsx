@@ -16,6 +16,15 @@ import {
 } from "@/lib/filters";
 
 export const Route = createFileRoute("/_app/filters")({
+  head: () => ({
+    meta: [
+      { title: "Content Filters — Guardian AI" },
+      { name: "description", content: "Tune age-appropriate content filters by category and time of day." },
+      { property: "og:title", content: "Content Filters — Guardian AI" },
+      { property: "og:description", content: "Tune age-appropriate content filters by category and time of day." },
+    ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/filters" }],
+  }),
   component: FiltersPage,
 });
 

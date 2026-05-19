@@ -1,0 +1,13 @@
+# Guardian AI
+
+> An AI-powered parental dashboard that helps families build healthier digital habits — warm, supportive, and never about surveillance.
+
+Guardian AI gives parents weekly wellness reports, shared screen-time agreements, and gentle conversation starters so families can talk about technology together. It is built for parents and guardians of children and teens.
+
+## Pages
+
+- [Home](/): Product overview and what Guardian AI is about.
+- [About](/about): Who Guardian AI is for and how to get in touch.
+- [Privacy Policy](/privacy): What data is collected, how it is stored, and how to request deletion.
+- [Terms of Service](/terms): The simple terms for using Guardian AI.
+- [Sign in](/auth): Sign in or create an account.

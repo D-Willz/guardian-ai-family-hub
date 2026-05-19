@@ -13,6 +13,15 @@ import {
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_app/dashboard")({
+  head: () => ({
+    meta: [
+      { title: "Your Family Dashboard — Guardian AI" },
+      { name: "description", content: "See today's screen time, gentle alerts, and your family's wellness score at a glance." },
+      { property: "og:title", content: "Your Family Dashboard — Guardian AI" },
+      { property: "og:description", content: "See today's screen time, gentle alerts, and your family's wellness score at a glance." },
+    ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/dashboard" }],
+  }),
   component: Dashboard,
 });
 

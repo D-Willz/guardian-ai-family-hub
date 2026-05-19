@@ -16,6 +16,15 @@ import {
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_app/behavior-alerts")({
+  head: () => ({
+    meta: [
+      { title: "Behavior Alerts — Guardian AI" },
+      { name: "description", content: "Gentle, prioritized signals when something in your child's digital routine needs attention." },
+      { property: "og:title", content: "Behavior Alerts — Guardian AI" },
+      { property: "og:description", content: "Gentle, prioritized signals when something in your child's digital routine needs attention." },
+    ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/behavior-alerts" }],
+  }),
   component: BehaviorAlertsPage,
 });
 

@@ -25,6 +25,15 @@ import {
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_app/app-monitoring")({
+  head: () => ({
+    meta: [
+      { title: "App Monitoring — Guardian AI" },
+      { name: "description", content: "See which apps your child uses most, with healthy-use insights — no surveillance." },
+      { property: "og:title", content: "App Monitoring — Guardian AI" },
+      { property: "og:description", content: "See which apps your child uses most, with healthy-use insights — no surveillance." },
+    ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/app-monitoring" }],
+  }),
   component: AppMonitoring,
 });
 

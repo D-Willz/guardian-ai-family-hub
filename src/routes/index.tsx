@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
         content: "Build healthier digital habits as a family with Guardian AI.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://guardian-ai-family-hub.lovable.app/" },
       { property: "og:site_name", content: "Guardian AI" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Guardian AI — Raise digital-savvy kids, together." },
@@ -27,7 +27,30 @@ export const Route = createFileRoute("/")({
         content: "Build healthier digital habits as a family with Guardian AI.",
       },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Guardian AI",
+          url: "https://guardian-ai-family-hub.lovable.app",
+          logo: "https://guardian-ai-family-hub.lovable.app/favicon.ico",
+          description:
+            "An AI-powered parental dashboard that helps families build healthier digital habits.",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Guardian AI",
+          url: "https://guardian-ai-family-hub.lovable.app",
+        }),
+      },
+    ],
   }),
   component: Landing,
 });

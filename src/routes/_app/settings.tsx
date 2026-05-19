@@ -18,6 +18,15 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuthReady } from "@/lib/auth";
 
 export const Route = createFileRoute("/_app/settings")({
+  head: () => ({
+    meta: [
+      { title: "Settings — Guardian AI" },
+      { name: "description", content: "Manage your account, email digest preferences, and subscription plan." },
+      { property: "og:title", content: "Settings — Guardian AI" },
+      { property: "og:description", content: "Manage your account, email digest preferences, and subscription plan." },
+    ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/settings" }],
+  }),
   component: SettingsPage,
 });
 

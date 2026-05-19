@@ -14,6 +14,14 @@ import {
 } from "@/lib/wellness-ai.functions";
 
 export const Route = createFileRoute("/_app/wellness/$reportId")({
+  head: () => ({
+    meta: [
+      { title: "Weekly Wellness Report — Guardian AI" },
+      { name: "description", content: "AI-generated insights, trends, and conversation starters for this week's wellness report." },
+      { property: "og:title", content: "Weekly Wellness Report — Guardian AI" },
+      { property: "og:description", content: "AI-generated insights, trends, and conversation starters for this week's wellness report." },
+    ],
+  }),
   component: ReportPage,
 });
 

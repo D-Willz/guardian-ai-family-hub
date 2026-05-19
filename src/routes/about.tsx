@@ -17,6 +17,7 @@ export const Route = createFileRoute("/about")({
           "Meet Guardian AI — a supportive companion for modern parents.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/about" }],
   }),
   component: AboutPage,
 });

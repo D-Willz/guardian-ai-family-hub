@@ -7,6 +7,15 @@ import { pastWeeks, computeWeekStats, summaryLine } from "@/lib/wellness";
 import { generateAlerts, useDismissed } from "@/lib/alerts";
 
 export const Route = createFileRoute("/_app/wellness/")({
+  head: () => ({
+    meta: [
+      { title: "Weekly Wellness Reports — Guardian AI" },
+      { name: "description", content: "Warm weekly summaries of your child's digital wellbeing — patterns, wins, and gentle nudges." },
+      { property: "og:title", content: "Weekly Wellness Reports — Guardian AI" },
+      { property: "og:description", content: "Warm weekly summaries of your child's digital wellbeing — patterns, wins, and gentle nudges." },
+    ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/wellness" }],
+  }),
   component: WellnessPage,
 });
 

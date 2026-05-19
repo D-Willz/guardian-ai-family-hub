@@ -5,6 +5,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { type Child, colorClass, initialsOf } from "@/lib/children";
 
 export const Route = createFileRoute("/_app/child/$childId")({
+  head: () => ({
+    meta: [
+      { title: "Child Profile — Guardian AI" },
+      { name: "description", content: "A focused view of one child's screen time, alerts, and wellness trends." },
+      { property: "og:title", content: "Child Profile — Guardian AI" },
+      { property: "og:description", content: "A focused view of one child's screen time, alerts, and wellness trends." },
+    ],
+  }),
   component: ChildDashboard,
 });
 
