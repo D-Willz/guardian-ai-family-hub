@@ -7,6 +7,14 @@ import { ContractSummary } from "@/components/ContractSummary";
 import { DEFAULT_LIMITS, DEFAULT_RULES, type CategoryRules, type DailyLimits } from "@/lib/contracts";
 
 export const Route = createFileRoute("/c/$token")({
+  head: () => ({
+    meta: [
+      { title: "Family Screen-Time Agreement — Guardian AI" },
+      { name: "description", content: "A shared family screen-time agreement, easy to read together." },
+      { property: "og:title", content: "Family Screen-Time Agreement — Guardian AI" },
+      { property: "og:description", content: "A shared family screen-time agreement, easy to read together." },
+    ],
+  }),
   component: PublicContractPage,
 });
 

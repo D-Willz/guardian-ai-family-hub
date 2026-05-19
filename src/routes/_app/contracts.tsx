@@ -18,6 +18,15 @@ import {
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_app/contracts")({
+  head: () => ({
+    meta: [
+      { title: "Screen-Time Agreements — Guardian AI" },
+      { name: "description", content: "Build warm, shared screen-time agreements with your child — together, not over them." },
+      { property: "og:title", content: "Screen-Time Agreements — Guardian AI" },
+      { property: "og:description", content: "Build warm, shared screen-time agreements with your child — together, not over them." },
+    ],
+    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/contracts" }],
+  }),
   component: ContractsPage,
 });
 
