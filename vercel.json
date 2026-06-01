@@ -1,13 +1,8 @@
 {
-  "outputDirectory": "dist/public",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/ads.txt",
-      "dest": "/ads.txt"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/"
+      "source": "/((?!ads.txt$).*)",
+      "destination": "/index.html"
     }
   ]
 }
