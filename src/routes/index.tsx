@@ -125,6 +125,13 @@ function Landing() {
               </Button>
             </Link>
           </div>
+          <p className="mt-6 text-sm text-muted-foreground">
+            New here?{" "}
+            <Link to="/resources" className="font-medium text-primary hover:underline">
+              Browse our family tech resources
+            </Link>
+            .
+          </p>
         </section>
 
         <section className="grid gap-5 pb-24 md:grid-cols-3">

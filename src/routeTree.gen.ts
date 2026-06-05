@@ -11,11 +11,19 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as ResourcesTeachingKidsOnlinePrivacyRouteImport } from './routes/resources.teaching-kids-online-privacy'
+import { Route as ResourcesTalkingToKidsAboutAiRouteImport } from './routes/resources.talking-to-kids-about-ai'
+import { Route as ResourcesSettingDigitalBoundariesRouteImport } from './routes/resources.setting-digital-boundaries'
+import { Route as ResourcesHealthyScreenTimeHabitsRouteImport } from './routes/resources.healthy-screen-time-habits'
+import { Route as ResourcesFamilyTechnologyAgreementsRouteImport } from './routes/resources.family-technology-agreements'
+import { Route as ResourcesChatbotSafetyForFamiliesRouteImport } from './routes/resources.chatbot-safety-for-families'
 import { Route as CTokenRouteImport } from './routes/c.$token'
 import { Route as AppWellnessRouteImport } from './routes/_app/wellness'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
@@ -36,6 +44,11 @@ const TermsRoute = TermsRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -62,6 +75,47 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ResourcesRoute,
+} as any)
+const ResourcesTeachingKidsOnlinePrivacyRoute =
+  ResourcesTeachingKidsOnlinePrivacyRouteImport.update({
+    id: '/teaching-kids-online-privacy',
+    path: '/teaching-kids-online-privacy',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesTalkingToKidsAboutAiRoute =
+  ResourcesTalkingToKidsAboutAiRouteImport.update({
+    id: '/talking-to-kids-about-ai',
+    path: '/talking-to-kids-about-ai',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesSettingDigitalBoundariesRoute =
+  ResourcesSettingDigitalBoundariesRouteImport.update({
+    id: '/setting-digital-boundaries',
+    path: '/setting-digital-boundaries',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesHealthyScreenTimeHabitsRoute =
+  ResourcesHealthyScreenTimeHabitsRouteImport.update({
+    id: '/healthy-screen-time-habits',
+    path: '/healthy-screen-time-habits',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesFamilyTechnologyAgreementsRoute =
+  ResourcesFamilyTechnologyAgreementsRouteImport.update({
+    id: '/family-technology-agreements',
+    path: '/family-technology-agreements',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesChatbotSafetyForFamiliesRoute =
+  ResourcesChatbotSafetyForFamiliesRouteImport.update({
+    id: '/chatbot-safety-for-families',
+    path: '/chatbot-safety-for-families',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
 const CTokenRoute = CTokenRouteImport.update({
   id: '/c/$token',
   path: '/c/$token',
@@ -123,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/app-monitoring': typeof AppAppMonitoringRoute
@@ -133,6 +188,13 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AppSettingsRoute
   '/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
+  '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
+  '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
+  '/resources/setting-digital-boundaries': typeof ResourcesSettingDigitalBoundariesRoute
+  '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
+  '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
   '/wellness/': typeof AppWellnessIndexRoute
@@ -151,6 +213,13 @@ export interface FileRoutesByTo {
   '/filters': typeof AppFiltersRoute
   '/settings': typeof AppSettingsRoute
   '/c/$token': typeof CTokenRoute
+  '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
+  '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
+  '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
+  '/resources/setting-digital-boundaries': typeof ResourcesSettingDigitalBoundariesRoute
+  '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
+  '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
+  '/resources': typeof ResourcesIndexRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
   '/wellness': typeof AppWellnessIndexRoute
@@ -162,6 +231,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/_app/app-monitoring': typeof AppAppMonitoringRoute
@@ -172,6 +242,13 @@ export interface FileRoutesById {
   '/_app/settings': typeof AppSettingsRoute
   '/_app/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
+  '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
+  '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
+  '/resources/setting-digital-boundaries': typeof ResourcesSettingDigitalBoundariesRoute
+  '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
+  '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/_app/child/$childId': typeof AppChildChildIdRoute
   '/_app/wellness/$reportId': typeof AppWellnessReportIdRoute
   '/_app/wellness/': typeof AppWellnessIndexRoute
@@ -183,6 +260,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/privacy'
+    | '/resources'
     | '/sitemap.xml'
     | '/terms'
     | '/app-monitoring'
@@ -193,6 +271,13 @@ export interface FileRouteTypes {
     | '/settings'
     | '/wellness'
     | '/c/$token'
+    | '/resources/chatbot-safety-for-families'
+    | '/resources/family-technology-agreements'
+    | '/resources/healthy-screen-time-habits'
+    | '/resources/setting-digital-boundaries'
+    | '/resources/talking-to-kids-about-ai'
+    | '/resources/teaching-kids-online-privacy'
+    | '/resources/'
     | '/child/$childId'
     | '/wellness/$reportId'
     | '/wellness/'
@@ -211,6 +296,13 @@ export interface FileRouteTypes {
     | '/filters'
     | '/settings'
     | '/c/$token'
+    | '/resources/chatbot-safety-for-families'
+    | '/resources/family-technology-agreements'
+    | '/resources/healthy-screen-time-habits'
+    | '/resources/setting-digital-boundaries'
+    | '/resources/talking-to-kids-about-ai'
+    | '/resources/teaching-kids-online-privacy'
+    | '/resources'
     | '/child/$childId'
     | '/wellness/$reportId'
     | '/wellness'
@@ -221,6 +313,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/privacy'
+    | '/resources'
     | '/sitemap.xml'
     | '/terms'
     | '/_app/app-monitoring'
@@ -231,6 +324,13 @@ export interface FileRouteTypes {
     | '/_app/settings'
     | '/_app/wellness'
     | '/c/$token'
+    | '/resources/chatbot-safety-for-families'
+    | '/resources/family-technology-agreements'
+    | '/resources/healthy-screen-time-habits'
+    | '/resources/setting-digital-boundaries'
+    | '/resources/talking-to-kids-about-ai'
+    | '/resources/teaching-kids-online-privacy'
+    | '/resources/'
     | '/_app/child/$childId'
     | '/_app/wellness/$reportId'
     | '/_app/wellness/'
@@ -242,6 +342,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   PrivacyRoute: typeof PrivacyRoute
+  ResourcesRoute: typeof ResourcesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   CTokenRoute: typeof CTokenRoute
@@ -261,6 +362,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -297,6 +405,55 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/resources/': {
+      id: '/resources/'
+      path: '/'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/teaching-kids-online-privacy': {
+      id: '/resources/teaching-kids-online-privacy'
+      path: '/teaching-kids-online-privacy'
+      fullPath: '/resources/teaching-kids-online-privacy'
+      preLoaderRoute: typeof ResourcesTeachingKidsOnlinePrivacyRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/talking-to-kids-about-ai': {
+      id: '/resources/talking-to-kids-about-ai'
+      path: '/talking-to-kids-about-ai'
+      fullPath: '/resources/talking-to-kids-about-ai'
+      preLoaderRoute: typeof ResourcesTalkingToKidsAboutAiRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/setting-digital-boundaries': {
+      id: '/resources/setting-digital-boundaries'
+      path: '/setting-digital-boundaries'
+      fullPath: '/resources/setting-digital-boundaries'
+      preLoaderRoute: typeof ResourcesSettingDigitalBoundariesRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/healthy-screen-time-habits': {
+      id: '/resources/healthy-screen-time-habits'
+      path: '/healthy-screen-time-habits'
+      fullPath: '/resources/healthy-screen-time-habits'
+      preLoaderRoute: typeof ResourcesHealthyScreenTimeHabitsRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/family-technology-agreements': {
+      id: '/resources/family-technology-agreements'
+      path: '/family-technology-agreements'
+      fullPath: '/resources/family-technology-agreements'
+      preLoaderRoute: typeof ResourcesFamilyTechnologyAgreementsRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/chatbot-safety-for-families': {
+      id: '/resources/chatbot-safety-for-families'
+      path: '/chatbot-safety-for-families'
+      fullPath: '/resources/chatbot-safety-for-families'
+      preLoaderRoute: typeof ResourcesChatbotSafetyForFamiliesRouteImport
+      parentRoute: typeof ResourcesRoute
     }
     '/c/$token': {
       id: '/c/$token'
@@ -416,12 +573,41 @@ const AppRouteChildren: AppRouteChildren = {
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
+interface ResourcesRouteChildren {
+  ResourcesChatbotSafetyForFamiliesRoute: typeof ResourcesChatbotSafetyForFamiliesRoute
+  ResourcesFamilyTechnologyAgreementsRoute: typeof ResourcesFamilyTechnologyAgreementsRoute
+  ResourcesHealthyScreenTimeHabitsRoute: typeof ResourcesHealthyScreenTimeHabitsRoute
+  ResourcesSettingDigitalBoundariesRoute: typeof ResourcesSettingDigitalBoundariesRoute
+  ResourcesTalkingToKidsAboutAiRoute: typeof ResourcesTalkingToKidsAboutAiRoute
+  ResourcesTeachingKidsOnlinePrivacyRoute: typeof ResourcesTeachingKidsOnlinePrivacyRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
+}
+
+const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesChatbotSafetyForFamiliesRoute:
+    ResourcesChatbotSafetyForFamiliesRoute,
+  ResourcesFamilyTechnologyAgreementsRoute:
+    ResourcesFamilyTechnologyAgreementsRoute,
+  ResourcesHealthyScreenTimeHabitsRoute: ResourcesHealthyScreenTimeHabitsRoute,
+  ResourcesSettingDigitalBoundariesRoute:
+    ResourcesSettingDigitalBoundariesRoute,
+  ResourcesTalkingToKidsAboutAiRoute: ResourcesTalkingToKidsAboutAiRoute,
+  ResourcesTeachingKidsOnlinePrivacyRoute:
+    ResourcesTeachingKidsOnlinePrivacyRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
+}
+
+const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
+  ResourcesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   PrivacyRoute: PrivacyRoute,
+  ResourcesRoute: ResourcesRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   CTokenRoute: CTokenRoute,
