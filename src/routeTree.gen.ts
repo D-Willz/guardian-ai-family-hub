@@ -20,6 +20,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ResourcesTeachingKidsOnlinePrivacyRouteImport } from './routes/resources.teaching-kids-online-privacy'
 import { Route as ResourcesTalkingToKidsAboutAiRouteImport } from './routes/resources.talking-to-kids-about-ai'
+import { Route as ResourcesHealthyScreenTimeHabitsRouteImport } from './routes/resources.healthy-screen-time-habits'
 import { Route as CTokenRouteImport } from './routes/c.$token'
 import { Route as AppWellnessRouteImport } from './routes/_app/wellness'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
@@ -86,6 +87,12 @@ const ResourcesTalkingToKidsAboutAiRoute =
   ResourcesTalkingToKidsAboutAiRouteImport.update({
     id: '/talking-to-kids-about-ai',
     path: '/talking-to-kids-about-ai',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesHealthyScreenTimeHabitsRoute =
+  ResourcesHealthyScreenTimeHabitsRouteImport.update({
+    id: '/healthy-screen-time-habits',
+    path: '/healthy-screen-time-habits',
     getParentRoute: () => ResourcesRoute,
   } as any)
 const CTokenRoute = CTokenRouteImport.update({
@@ -160,6 +167,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AppSettingsRoute
   '/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
   '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -181,6 +189,7 @@ export interface FileRoutesByTo {
   '/filters': typeof AppFiltersRoute
   '/settings': typeof AppSettingsRoute
   '/c/$token': typeof CTokenRoute
+  '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
   '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
   '/resources': typeof ResourcesIndexRoute
@@ -206,6 +215,7 @@ export interface FileRoutesById {
   '/_app/settings': typeof AppSettingsRoute
   '/_app/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
   '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -231,6 +241,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/wellness'
     | '/c/$token'
+    | '/resources/healthy-screen-time-habits'
     | '/resources/talking-to-kids-about-ai'
     | '/resources/teaching-kids-online-privacy'
     | '/resources/'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/filters'
     | '/settings'
     | '/c/$token'
+    | '/resources/healthy-screen-time-habits'
     | '/resources/talking-to-kids-about-ai'
     | '/resources/teaching-kids-online-privacy'
     | '/resources'
@@ -276,6 +288,7 @@ export interface FileRouteTypes {
     | '/_app/settings'
     | '/_app/wellness'
     | '/c/$token'
+    | '/resources/healthy-screen-time-habits'
     | '/resources/talking-to-kids-about-ai'
     | '/resources/teaching-kids-online-privacy'
     | '/resources/'
@@ -373,6 +386,13 @@ declare module '@tanstack/react-router' {
       path: '/talking-to-kids-about-ai'
       fullPath: '/resources/talking-to-kids-about-ai'
       preLoaderRoute: typeof ResourcesTalkingToKidsAboutAiRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/healthy-screen-time-habits': {
+      id: '/resources/healthy-screen-time-habits'
+      path: '/healthy-screen-time-habits'
+      fullPath: '/resources/healthy-screen-time-habits'
+      preLoaderRoute: typeof ResourcesHealthyScreenTimeHabitsRouteImport
       parentRoute: typeof ResourcesRoute
     }
     '/c/$token': {
@@ -494,12 +514,14 @@ const AppRouteChildren: AppRouteChildren = {
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface ResourcesRouteChildren {
+  ResourcesHealthyScreenTimeHabitsRoute: typeof ResourcesHealthyScreenTimeHabitsRoute
   ResourcesTalkingToKidsAboutAiRoute: typeof ResourcesTalkingToKidsAboutAiRoute
   ResourcesTeachingKidsOnlinePrivacyRoute: typeof ResourcesTeachingKidsOnlinePrivacyRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
 const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesHealthyScreenTimeHabitsRoute: ResourcesHealthyScreenTimeHabitsRoute,
   ResourcesTalkingToKidsAboutAiRoute: ResourcesTalkingToKidsAboutAiRoute,
   ResourcesTeachingKidsOnlinePrivacyRoute:
     ResourcesTeachingKidsOnlinePrivacyRoute,
