@@ -17,6 +17,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as CTokenRouteImport } from './routes/c.$token'
 import { Route as AppWellnessRouteImport } from './routes/_app/wellness'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
@@ -67,6 +68,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ResourcesRoute,
 } as any)
 const CTokenRoute = CTokenRouteImport.update({
   id: '/c/$token',
@@ -129,7 +135,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/privacy': typeof PrivacyRoute
-  '/resources': typeof ResourcesRoute
+  '/resources': typeof ResourcesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/app-monitoring': typeof AppAppMonitoringRoute
@@ -140,6 +146,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AppSettingsRoute
   '/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
   '/wellness/': typeof AppWellnessIndexRoute
@@ -149,7 +156,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/privacy': typeof PrivacyRoute
-  '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/app-monitoring': typeof AppAppMonitoringRoute
@@ -159,6 +165,7 @@ export interface FileRoutesByTo {
   '/filters': typeof AppFiltersRoute
   '/settings': typeof AppSettingsRoute
   '/c/$token': typeof CTokenRoute
+  '/resources': typeof ResourcesIndexRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
   '/wellness': typeof AppWellnessIndexRoute
@@ -170,7 +177,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/privacy': typeof PrivacyRoute
-  '/resources': typeof ResourcesRoute
+  '/resources': typeof ResourcesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/_app/app-monitoring': typeof AppAppMonitoringRoute
@@ -181,6 +188,7 @@ export interface FileRoutesById {
   '/_app/settings': typeof AppSettingsRoute
   '/_app/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/_app/child/$childId': typeof AppChildChildIdRoute
   '/_app/wellness/$reportId': typeof AppWellnessReportIdRoute
   '/_app/wellness/': typeof AppWellnessIndexRoute
@@ -203,6 +211,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/wellness'
     | '/c/$token'
+    | '/resources/'
     | '/child/$childId'
     | '/wellness/$reportId'
     | '/wellness/'
@@ -212,7 +221,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/privacy'
-    | '/resources'
     | '/sitemap.xml'
     | '/terms'
     | '/app-monitoring'
@@ -222,6 +230,7 @@ export interface FileRouteTypes {
     | '/filters'
     | '/settings'
     | '/c/$token'
+    | '/resources'
     | '/child/$childId'
     | '/wellness/$reportId'
     | '/wellness'
@@ -243,6 +252,7 @@ export interface FileRouteTypes {
     | '/_app/settings'
     | '/_app/wellness'
     | '/c/$token'
+    | '/resources/'
     | '/_app/child/$childId'
     | '/_app/wellness/$reportId'
     | '/_app/wellness/'
@@ -254,7 +264,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   PrivacyRoute: typeof PrivacyRoute
-  ResourcesRoute: typeof ResourcesRoute
+  ResourcesRoute: typeof ResourcesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   CTokenRoute: typeof CTokenRoute
@@ -317,6 +327,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/resources/': {
+      id: '/resources/'
+      path: '/'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof ResourcesRoute
     }
     '/c/$token': {
       id: '/c/$token'
@@ -436,13 +453,25 @@ const AppRouteChildren: AppRouteChildren = {
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
+interface ResourcesRouteChildren {
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
+}
+
+const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesIndexRoute: ResourcesIndexRoute,
+}
+
+const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
+  ResourcesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   PrivacyRoute: PrivacyRoute,
-  ResourcesRoute: ResourcesRoute,
+  ResourcesRoute: ResourcesRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   CTokenRoute: CTokenRoute,
