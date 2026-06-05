@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
@@ -36,6 +37,11 @@ const TermsRoute = TermsRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/app-monitoring': typeof AppAppMonitoringRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/app-monitoring': typeof AppAppMonitoringRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/_app/app-monitoring': typeof AppAppMonitoringRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/privacy'
+    | '/resources'
     | '/sitemap.xml'
     | '/terms'
     | '/app-monitoring'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/privacy'
+    | '/resources'
     | '/sitemap.xml'
     | '/terms'
     | '/app-monitoring'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/privacy'
+    | '/resources'
     | '/sitemap.xml'
     | '/terms'
     | '/_app/app-monitoring'
@@ -242,6 +254,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   PrivacyRoute: typeof PrivacyRoute
+  ResourcesRoute: typeof ResourcesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   CTokenRoute: typeof CTokenRoute
@@ -261,6 +274,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -422,6 +442,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   PrivacyRoute: PrivacyRoute,
+  ResourcesRoute: ResourcesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   CTokenRoute: CTokenRoute,
@@ -429,3 +450,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
