@@ -151,16 +151,6 @@ function Landing() {
             body="Smart content filters and behavior alerts that adapt to your child's age and routines."
           />
         </section>
-            icon={Sparkles}
-            title="Gentle AI insights"
-            body="Spot patterns early with thoughtful weekly wellness reports — not raw data dumps."
-          />
-          <Feature
-            icon={Shield}
-            title="Safe by default"
-            body="Smart content filters and behavior alerts that adapt to your child's age and routines."
-          />
-        </section>
       </main>
       <SiteFooter />
     </div>
