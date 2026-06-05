@@ -125,6 +125,13 @@ function Landing() {
               </Button>
             </Link>
           </div>
+          <p className="mt-6 text-sm text-muted-foreground">
+            New here?{" "}
+            <Link to="/resources" className="font-medium text-primary hover:underline">
+              Browse our family tech resources
+            </Link>
+            .
+          </p>
         </section>
 
         <section className="grid gap-5 pb-24 md:grid-cols-3">
@@ -134,6 +141,16 @@ function Landing() {
             body="Open conversations and shared screen-time contracts replace silent monitoring."
           />
           <Feature
+            icon={Sparkles}
+            title="Gentle AI insights"
+            body="Spot patterns early with thoughtful weekly wellness reports — not raw data dumps."
+          />
+          <Feature
+            icon={Shield}
+            title="Safe by default"
+            body="Smart content filters and behavior alerts that adapt to your child's age and routines."
+          />
+        </section>
             icon={Sparkles}
             title="Gentle AI insights"
             body="Spot patterns early with thoughtful weekly wellness reports — not raw data dumps."
