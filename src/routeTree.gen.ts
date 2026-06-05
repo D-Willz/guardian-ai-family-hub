@@ -20,6 +20,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ResourcesTeachingKidsOnlinePrivacyRouteImport } from './routes/resources.teaching-kids-online-privacy'
 import { Route as ResourcesTalkingToKidsAboutAiRouteImport } from './routes/resources.talking-to-kids-about-ai'
+import { Route as ResourcesSettingDigitalBoundariesRouteImport } from './routes/resources.setting-digital-boundaries'
 import { Route as ResourcesHealthyScreenTimeHabitsRouteImport } from './routes/resources.healthy-screen-time-habits'
 import { Route as ResourcesFamilyTechnologyAgreementsRouteImport } from './routes/resources.family-technology-agreements'
 import { Route as ResourcesChatbotSafetyForFamiliesRouteImport } from './routes/resources.chatbot-safety-for-families'
@@ -89,6 +90,12 @@ const ResourcesTalkingToKidsAboutAiRoute =
   ResourcesTalkingToKidsAboutAiRouteImport.update({
     id: '/talking-to-kids-about-ai',
     path: '/talking-to-kids-about-ai',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesSettingDigitalBoundariesRoute =
+  ResourcesSettingDigitalBoundariesRouteImport.update({
+    id: '/setting-digital-boundaries',
+    path: '/setting-digital-boundaries',
     getParentRoute: () => ResourcesRoute,
   } as any)
 const ResourcesHealthyScreenTimeHabitsRoute =
@@ -184,6 +191,7 @@ export interface FileRoutesByFullPath {
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
   '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
   '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
+  '/resources/setting-digital-boundaries': typeof ResourcesSettingDigitalBoundariesRoute
   '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -208,6 +216,7 @@ export interface FileRoutesByTo {
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
   '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
   '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
+  '/resources/setting-digital-boundaries': typeof ResourcesSettingDigitalBoundariesRoute
   '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
   '/resources': typeof ResourcesIndexRoute
@@ -236,6 +245,7 @@ export interface FileRoutesById {
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
   '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
   '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
+  '/resources/setting-digital-boundaries': typeof ResourcesSettingDigitalBoundariesRoute
   '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -264,6 +274,7 @@ export interface FileRouteTypes {
     | '/resources/chatbot-safety-for-families'
     | '/resources/family-technology-agreements'
     | '/resources/healthy-screen-time-habits'
+    | '/resources/setting-digital-boundaries'
     | '/resources/talking-to-kids-about-ai'
     | '/resources/teaching-kids-online-privacy'
     | '/resources/'
@@ -288,6 +299,7 @@ export interface FileRouteTypes {
     | '/resources/chatbot-safety-for-families'
     | '/resources/family-technology-agreements'
     | '/resources/healthy-screen-time-habits'
+    | '/resources/setting-digital-boundaries'
     | '/resources/talking-to-kids-about-ai'
     | '/resources/teaching-kids-online-privacy'
     | '/resources'
@@ -315,6 +327,7 @@ export interface FileRouteTypes {
     | '/resources/chatbot-safety-for-families'
     | '/resources/family-technology-agreements'
     | '/resources/healthy-screen-time-habits'
+    | '/resources/setting-digital-boundaries'
     | '/resources/talking-to-kids-about-ai'
     | '/resources/teaching-kids-online-privacy'
     | '/resources/'
@@ -412,6 +425,13 @@ declare module '@tanstack/react-router' {
       path: '/talking-to-kids-about-ai'
       fullPath: '/resources/talking-to-kids-about-ai'
       preLoaderRoute: typeof ResourcesTalkingToKidsAboutAiRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/setting-digital-boundaries': {
+      id: '/resources/setting-digital-boundaries'
+      path: '/setting-digital-boundaries'
+      fullPath: '/resources/setting-digital-boundaries'
+      preLoaderRoute: typeof ResourcesSettingDigitalBoundariesRouteImport
       parentRoute: typeof ResourcesRoute
     }
     '/resources/healthy-screen-time-habits': {
@@ -557,6 +577,7 @@ interface ResourcesRouteChildren {
   ResourcesChatbotSafetyForFamiliesRoute: typeof ResourcesChatbotSafetyForFamiliesRoute
   ResourcesFamilyTechnologyAgreementsRoute: typeof ResourcesFamilyTechnologyAgreementsRoute
   ResourcesHealthyScreenTimeHabitsRoute: typeof ResourcesHealthyScreenTimeHabitsRoute
+  ResourcesSettingDigitalBoundariesRoute: typeof ResourcesSettingDigitalBoundariesRoute
   ResourcesTalkingToKidsAboutAiRoute: typeof ResourcesTalkingToKidsAboutAiRoute
   ResourcesTeachingKidsOnlinePrivacyRoute: typeof ResourcesTeachingKidsOnlinePrivacyRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
@@ -568,6 +589,8 @@ const ResourcesRouteChildren: ResourcesRouteChildren = {
   ResourcesFamilyTechnologyAgreementsRoute:
     ResourcesFamilyTechnologyAgreementsRoute,
   ResourcesHealthyScreenTimeHabitsRoute: ResourcesHealthyScreenTimeHabitsRoute,
+  ResourcesSettingDigitalBoundariesRoute:
+    ResourcesSettingDigitalBoundariesRoute,
   ResourcesTalkingToKidsAboutAiRoute: ResourcesTalkingToKidsAboutAiRoute,
   ResourcesTeachingKidsOnlinePrivacyRoute:
     ResourcesTeachingKidsOnlinePrivacyRoute,
