@@ -18,6 +18,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as ResourcesTalkingToKidsAboutAiRouteImport } from './routes/resources.talking-to-kids-about-ai'
 import { Route as CTokenRouteImport } from './routes/c.$token'
 import { Route as AppWellnessRouteImport } from './routes/_app/wellness'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
@@ -74,6 +75,12 @@ const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ResourcesRoute,
 } as any)
+const ResourcesTalkingToKidsAboutAiRoute =
+  ResourcesTalkingToKidsAboutAiRouteImport.update({
+    id: '/talking-to-kids-about-ai',
+    path: '/talking-to-kids-about-ai',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
 const CTokenRoute = CTokenRouteImport.update({
   id: '/c/$token',
   path: '/c/$token',
@@ -146,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AppSettingsRoute
   '/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/': typeof ResourcesIndexRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
@@ -165,6 +173,7 @@ export interface FileRoutesByTo {
   '/filters': typeof AppFiltersRoute
   '/settings': typeof AppSettingsRoute
   '/c/$token': typeof CTokenRoute
+  '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources': typeof ResourcesIndexRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
@@ -188,6 +197,7 @@ export interface FileRoutesById {
   '/_app/settings': typeof AppSettingsRoute
   '/_app/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/': typeof ResourcesIndexRoute
   '/_app/child/$childId': typeof AppChildChildIdRoute
   '/_app/wellness/$reportId': typeof AppWellnessReportIdRoute
@@ -211,6 +221,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/wellness'
     | '/c/$token'
+    | '/resources/talking-to-kids-about-ai'
     | '/resources/'
     | '/child/$childId'
     | '/wellness/$reportId'
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
     | '/filters'
     | '/settings'
     | '/c/$token'
+    | '/resources/talking-to-kids-about-ai'
     | '/resources'
     | '/child/$childId'
     | '/wellness/$reportId'
@@ -252,6 +264,7 @@ export interface FileRouteTypes {
     | '/_app/settings'
     | '/_app/wellness'
     | '/c/$token'
+    | '/resources/talking-to-kids-about-ai'
     | '/resources/'
     | '/_app/child/$childId'
     | '/_app/wellness/$reportId'
@@ -333,6 +346,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/resources/'
       preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/talking-to-kids-about-ai': {
+      id: '/resources/talking-to-kids-about-ai'
+      path: '/talking-to-kids-about-ai'
+      fullPath: '/resources/talking-to-kids-about-ai'
+      preLoaderRoute: typeof ResourcesTalkingToKidsAboutAiRouteImport
       parentRoute: typeof ResourcesRoute
     }
     '/c/$token': {
@@ -454,10 +474,12 @@ const AppRouteChildren: AppRouteChildren = {
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface ResourcesRouteChildren {
+  ResourcesTalkingToKidsAboutAiRoute: typeof ResourcesTalkingToKidsAboutAiRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
 const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesTalkingToKidsAboutAiRoute: ResourcesTalkingToKidsAboutAiRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
 }
 
