@@ -21,6 +21,7 @@ import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ResourcesTeachingKidsOnlinePrivacyRouteImport } from './routes/resources.teaching-kids-online-privacy'
 import { Route as ResourcesTalkingToKidsAboutAiRouteImport } from './routes/resources.talking-to-kids-about-ai'
 import { Route as ResourcesHealthyScreenTimeHabitsRouteImport } from './routes/resources.healthy-screen-time-habits'
+import { Route as ResourcesFamilyTechnologyAgreementsRouteImport } from './routes/resources.family-technology-agreements'
 import { Route as ResourcesChatbotSafetyForFamiliesRouteImport } from './routes/resources.chatbot-safety-for-families'
 import { Route as CTokenRouteImport } from './routes/c.$token'
 import { Route as AppWellnessRouteImport } from './routes/_app/wellness'
@@ -94,6 +95,12 @@ const ResourcesHealthyScreenTimeHabitsRoute =
   ResourcesHealthyScreenTimeHabitsRouteImport.update({
     id: '/healthy-screen-time-habits',
     path: '/healthy-screen-time-habits',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesFamilyTechnologyAgreementsRoute =
+  ResourcesFamilyTechnologyAgreementsRouteImport.update({
+    id: '/family-technology-agreements',
+    path: '/family-technology-agreements',
     getParentRoute: () => ResourcesRoute,
   } as any)
 const ResourcesChatbotSafetyForFamiliesRoute =
@@ -175,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
+  '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
   '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
   '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
@@ -198,6 +206,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AppSettingsRoute
   '/c/$token': typeof CTokenRoute
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
+  '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
   '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
   '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
@@ -225,6 +234,7 @@ export interface FileRoutesById {
   '/_app/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
+  '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
   '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
   '/resources/talking-to-kids-about-ai': typeof ResourcesTalkingToKidsAboutAiRoute
   '/resources/teaching-kids-online-privacy': typeof ResourcesTeachingKidsOnlinePrivacyRoute
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/wellness'
     | '/c/$token'
     | '/resources/chatbot-safety-for-families'
+    | '/resources/family-technology-agreements'
     | '/resources/healthy-screen-time-habits'
     | '/resources/talking-to-kids-about-ai'
     | '/resources/teaching-kids-online-privacy'
@@ -275,6 +286,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/c/$token'
     | '/resources/chatbot-safety-for-families'
+    | '/resources/family-technology-agreements'
     | '/resources/healthy-screen-time-habits'
     | '/resources/talking-to-kids-about-ai'
     | '/resources/teaching-kids-online-privacy'
@@ -301,6 +313,7 @@ export interface FileRouteTypes {
     | '/_app/wellness'
     | '/c/$token'
     | '/resources/chatbot-safety-for-families'
+    | '/resources/family-technology-agreements'
     | '/resources/healthy-screen-time-habits'
     | '/resources/talking-to-kids-about-ai'
     | '/resources/teaching-kids-online-privacy'
@@ -406,6 +419,13 @@ declare module '@tanstack/react-router' {
       path: '/healthy-screen-time-habits'
       fullPath: '/resources/healthy-screen-time-habits'
       preLoaderRoute: typeof ResourcesHealthyScreenTimeHabitsRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/family-technology-agreements': {
+      id: '/resources/family-technology-agreements'
+      path: '/family-technology-agreements'
+      fullPath: '/resources/family-technology-agreements'
+      preLoaderRoute: typeof ResourcesFamilyTechnologyAgreementsRouteImport
       parentRoute: typeof ResourcesRoute
     }
     '/resources/chatbot-safety-for-families': {
@@ -535,6 +555,7 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface ResourcesRouteChildren {
   ResourcesChatbotSafetyForFamiliesRoute: typeof ResourcesChatbotSafetyForFamiliesRoute
+  ResourcesFamilyTechnologyAgreementsRoute: typeof ResourcesFamilyTechnologyAgreementsRoute
   ResourcesHealthyScreenTimeHabitsRoute: typeof ResourcesHealthyScreenTimeHabitsRoute
   ResourcesTalkingToKidsAboutAiRoute: typeof ResourcesTalkingToKidsAboutAiRoute
   ResourcesTeachingKidsOnlinePrivacyRoute: typeof ResourcesTeachingKidsOnlinePrivacyRoute
@@ -544,6 +565,8 @@ interface ResourcesRouteChildren {
 const ResourcesRouteChildren: ResourcesRouteChildren = {
   ResourcesChatbotSafetyForFamiliesRoute:
     ResourcesChatbotSafetyForFamiliesRoute,
+  ResourcesFamilyTechnologyAgreementsRoute:
+    ResourcesFamilyTechnologyAgreementsRoute,
   ResourcesHealthyScreenTimeHabitsRoute: ResourcesHealthyScreenTimeHabitsRoute,
   ResourcesTalkingToKidsAboutAiRoute: ResourcesTalkingToKidsAboutAiRoute,
   ResourcesTeachingKidsOnlinePrivacyRoute:
