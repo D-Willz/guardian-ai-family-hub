@@ -13,6 +13,9 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AppRouteImport } from './routes/_app'
@@ -23,7 +26,13 @@ import { Route as ResourcesTalkingToKidsAboutAiRouteImport } from './routes/reso
 import { Route as ResourcesSettingDigitalBoundariesRouteImport } from './routes/resources.setting-digital-boundaries'
 import { Route as ResourcesHealthyScreenTimeHabitsRouteImport } from './routes/resources.healthy-screen-time-habits'
 import { Route as ResourcesFamilyTechnologyAgreementsRouteImport } from './routes/resources.family-technology-agreements'
+import { Route as ResourcesFamilyTechnologyAgreementTemplateRouteImport } from './routes/resources.family-technology-agreement-template'
+import { Route as ResourcesFamilyDigitalBoundariesPlannerRouteImport } from './routes/resources.family-digital-boundaries-planner'
+import { Route as ResourcesDownloadsRouteImport } from './routes/resources.downloads'
 import { Route as ResourcesChatbotSafetyForFamiliesRouteImport } from './routes/resources.chatbot-safety-for-families'
+import { Route as ResourcesChatbotSafetyChecklistRouteImport } from './routes/resources.chatbot-safety-checklist'
+import { Route as ResourcesAppPrivacyReviewChecklistRouteImport } from './routes/resources.app-privacy-review-checklist'
+import { Route as ResourcesAgeByAgeAiConversationGuideRouteImport } from './routes/resources.age-by-age-ai-conversation-guide'
 import { Route as CTokenRouteImport } from './routes/c.$token'
 import { Route as AppWellnessRouteImport } from './routes/_app/wellness'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
@@ -54,6 +63,21 @@ const ResourcesRoute = ResourcesRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
+  id: '/editorial-policy',
+  path: '/editorial-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -110,10 +134,45 @@ const ResourcesFamilyTechnologyAgreementsRoute =
     path: '/family-technology-agreements',
     getParentRoute: () => ResourcesRoute,
   } as any)
+const ResourcesFamilyTechnologyAgreementTemplateRoute =
+  ResourcesFamilyTechnologyAgreementTemplateRouteImport.update({
+    id: '/family-technology-agreement-template',
+    path: '/family-technology-agreement-template',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesFamilyDigitalBoundariesPlannerRoute =
+  ResourcesFamilyDigitalBoundariesPlannerRouteImport.update({
+    id: '/family-digital-boundaries-planner',
+    path: '/family-digital-boundaries-planner',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesDownloadsRoute = ResourcesDownloadsRouteImport.update({
+  id: '/downloads',
+  path: '/downloads',
+  getParentRoute: () => ResourcesRoute,
+} as any)
 const ResourcesChatbotSafetyForFamiliesRoute =
   ResourcesChatbotSafetyForFamiliesRouteImport.update({
     id: '/chatbot-safety-for-families',
     path: '/chatbot-safety-for-families',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesChatbotSafetyChecklistRoute =
+  ResourcesChatbotSafetyChecklistRouteImport.update({
+    id: '/chatbot-safety-checklist',
+    path: '/chatbot-safety-checklist',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesAppPrivacyReviewChecklistRoute =
+  ResourcesAppPrivacyReviewChecklistRouteImport.update({
+    id: '/app-privacy-review-checklist',
+    path: '/app-privacy-review-checklist',
+    getParentRoute: () => ResourcesRoute,
+  } as any)
+const ResourcesAgeByAgeAiConversationGuideRoute =
+  ResourcesAgeByAgeAiConversationGuideRouteImport.update({
+    id: '/age-by-age-ai-conversation-guide',
+    path: '/age-by-age-ai-conversation-guide',
     getParentRoute: () => ResourcesRoute,
   } as any)
 const CTokenRoute = CTokenRouteImport.update({
@@ -176,6 +235,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
+  '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -188,7 +250,13 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AppSettingsRoute
   '/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/age-by-age-ai-conversation-guide': typeof ResourcesAgeByAgeAiConversationGuideRoute
+  '/resources/app-privacy-review-checklist': typeof ResourcesAppPrivacyReviewChecklistRoute
+  '/resources/chatbot-safety-checklist': typeof ResourcesChatbotSafetyChecklistRoute
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
+  '/resources/downloads': typeof ResourcesDownloadsRoute
+  '/resources/family-digital-boundaries-planner': typeof ResourcesFamilyDigitalBoundariesPlannerRoute
+  '/resources/family-technology-agreement-template': typeof ResourcesFamilyTechnologyAgreementTemplateRoute
   '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
   '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
   '/resources/setting-digital-boundaries': typeof ResourcesSettingDigitalBoundariesRoute
@@ -203,6 +271,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
+  '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
@@ -213,7 +284,13 @@ export interface FileRoutesByTo {
   '/filters': typeof AppFiltersRoute
   '/settings': typeof AppSettingsRoute
   '/c/$token': typeof CTokenRoute
+  '/resources/age-by-age-ai-conversation-guide': typeof ResourcesAgeByAgeAiConversationGuideRoute
+  '/resources/app-privacy-review-checklist': typeof ResourcesAppPrivacyReviewChecklistRoute
+  '/resources/chatbot-safety-checklist': typeof ResourcesChatbotSafetyChecklistRoute
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
+  '/resources/downloads': typeof ResourcesDownloadsRoute
+  '/resources/family-digital-boundaries-planner': typeof ResourcesFamilyDigitalBoundariesPlannerRoute
+  '/resources/family-technology-agreement-template': typeof ResourcesFamilyTechnologyAgreementTemplateRoute
   '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
   '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
   '/resources/setting-digital-boundaries': typeof ResourcesSettingDigitalBoundariesRoute
@@ -230,6 +307,9 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
+  '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -242,7 +322,13 @@ export interface FileRoutesById {
   '/_app/settings': typeof AppSettingsRoute
   '/_app/wellness': typeof AppWellnessRouteWithChildren
   '/c/$token': typeof CTokenRoute
+  '/resources/age-by-age-ai-conversation-guide': typeof ResourcesAgeByAgeAiConversationGuideRoute
+  '/resources/app-privacy-review-checklist': typeof ResourcesAppPrivacyReviewChecklistRoute
+  '/resources/chatbot-safety-checklist': typeof ResourcesChatbotSafetyChecklistRoute
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
+  '/resources/downloads': typeof ResourcesDownloadsRoute
+  '/resources/family-digital-boundaries-planner': typeof ResourcesFamilyDigitalBoundariesPlannerRoute
+  '/resources/family-technology-agreement-template': typeof ResourcesFamilyTechnologyAgreementTemplateRoute
   '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
   '/resources/healthy-screen-time-habits': typeof ResourcesHealthyScreenTimeHabitsRoute
   '/resources/setting-digital-boundaries': typeof ResourcesSettingDigitalBoundariesRoute
@@ -259,6 +345,9 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/contact'
+    | '/editorial-policy'
+    | '/faq'
     | '/privacy'
     | '/resources'
     | '/sitemap.xml'
@@ -271,7 +360,13 @@ export interface FileRouteTypes {
     | '/settings'
     | '/wellness'
     | '/c/$token'
+    | '/resources/age-by-age-ai-conversation-guide'
+    | '/resources/app-privacy-review-checklist'
+    | '/resources/chatbot-safety-checklist'
     | '/resources/chatbot-safety-for-families'
+    | '/resources/downloads'
+    | '/resources/family-digital-boundaries-planner'
+    | '/resources/family-technology-agreement-template'
     | '/resources/family-technology-agreements'
     | '/resources/healthy-screen-time-habits'
     | '/resources/setting-digital-boundaries'
@@ -286,6 +381,9 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/contact'
+    | '/editorial-policy'
+    | '/faq'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
@@ -296,7 +394,13 @@ export interface FileRouteTypes {
     | '/filters'
     | '/settings'
     | '/c/$token'
+    | '/resources/age-by-age-ai-conversation-guide'
+    | '/resources/app-privacy-review-checklist'
+    | '/resources/chatbot-safety-checklist'
     | '/resources/chatbot-safety-for-families'
+    | '/resources/downloads'
+    | '/resources/family-digital-boundaries-planner'
+    | '/resources/family-technology-agreement-template'
     | '/resources/family-technology-agreements'
     | '/resources/healthy-screen-time-habits'
     | '/resources/setting-digital-boundaries'
@@ -312,6 +416,9 @@ export interface FileRouteTypes {
     | '/_app'
     | '/about'
     | '/auth'
+    | '/contact'
+    | '/editorial-policy'
+    | '/faq'
     | '/privacy'
     | '/resources'
     | '/sitemap.xml'
@@ -324,7 +431,13 @@ export interface FileRouteTypes {
     | '/_app/settings'
     | '/_app/wellness'
     | '/c/$token'
+    | '/resources/age-by-age-ai-conversation-guide'
+    | '/resources/app-privacy-review-checklist'
+    | '/resources/chatbot-safety-checklist'
     | '/resources/chatbot-safety-for-families'
+    | '/resources/downloads'
+    | '/resources/family-digital-boundaries-planner'
+    | '/resources/family-technology-agreement-template'
     | '/resources/family-technology-agreements'
     | '/resources/healthy-screen-time-habits'
     | '/resources/setting-digital-boundaries'
@@ -341,6 +454,9 @@ export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
+  ContactRoute: typeof ContactRoute
+  EditorialPolicyRoute: typeof EditorialPolicyRoute
+  FaqRoute: typeof FaqRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -376,6 +492,27 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial-policy': {
+      id: '/editorial-policy'
+      path: '/editorial-policy'
+      fullPath: '/editorial-policy'
+      preLoaderRoute: typeof EditorialPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -448,11 +585,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesFamilyTechnologyAgreementsRouteImport
       parentRoute: typeof ResourcesRoute
     }
+    '/resources/family-technology-agreement-template': {
+      id: '/resources/family-technology-agreement-template'
+      path: '/family-technology-agreement-template'
+      fullPath: '/resources/family-technology-agreement-template'
+      preLoaderRoute: typeof ResourcesFamilyTechnologyAgreementTemplateRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/family-digital-boundaries-planner': {
+      id: '/resources/family-digital-boundaries-planner'
+      path: '/family-digital-boundaries-planner'
+      fullPath: '/resources/family-digital-boundaries-planner'
+      preLoaderRoute: typeof ResourcesFamilyDigitalBoundariesPlannerRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/downloads': {
+      id: '/resources/downloads'
+      path: '/downloads'
+      fullPath: '/resources/downloads'
+      preLoaderRoute: typeof ResourcesDownloadsRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
     '/resources/chatbot-safety-for-families': {
       id: '/resources/chatbot-safety-for-families'
       path: '/chatbot-safety-for-families'
       fullPath: '/resources/chatbot-safety-for-families'
       preLoaderRoute: typeof ResourcesChatbotSafetyForFamiliesRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/chatbot-safety-checklist': {
+      id: '/resources/chatbot-safety-checklist'
+      path: '/chatbot-safety-checklist'
+      fullPath: '/resources/chatbot-safety-checklist'
+      preLoaderRoute: typeof ResourcesChatbotSafetyChecklistRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/app-privacy-review-checklist': {
+      id: '/resources/app-privacy-review-checklist'
+      path: '/app-privacy-review-checklist'
+      fullPath: '/resources/app-privacy-review-checklist'
+      preLoaderRoute: typeof ResourcesAppPrivacyReviewChecklistRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/age-by-age-ai-conversation-guide': {
+      id: '/resources/age-by-age-ai-conversation-guide'
+      path: '/age-by-age-ai-conversation-guide'
+      fullPath: '/resources/age-by-age-ai-conversation-guide'
+      preLoaderRoute: typeof ResourcesAgeByAgeAiConversationGuideRouteImport
       parentRoute: typeof ResourcesRoute
     }
     '/c/$token': {
@@ -574,7 +753,13 @@ const AppRouteChildren: AppRouteChildren = {
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface ResourcesRouteChildren {
+  ResourcesAgeByAgeAiConversationGuideRoute: typeof ResourcesAgeByAgeAiConversationGuideRoute
+  ResourcesAppPrivacyReviewChecklistRoute: typeof ResourcesAppPrivacyReviewChecklistRoute
+  ResourcesChatbotSafetyChecklistRoute: typeof ResourcesChatbotSafetyChecklistRoute
   ResourcesChatbotSafetyForFamiliesRoute: typeof ResourcesChatbotSafetyForFamiliesRoute
+  ResourcesDownloadsRoute: typeof ResourcesDownloadsRoute
+  ResourcesFamilyDigitalBoundariesPlannerRoute: typeof ResourcesFamilyDigitalBoundariesPlannerRoute
+  ResourcesFamilyTechnologyAgreementTemplateRoute: typeof ResourcesFamilyTechnologyAgreementTemplateRoute
   ResourcesFamilyTechnologyAgreementsRoute: typeof ResourcesFamilyTechnologyAgreementsRoute
   ResourcesHealthyScreenTimeHabitsRoute: typeof ResourcesHealthyScreenTimeHabitsRoute
   ResourcesSettingDigitalBoundariesRoute: typeof ResourcesSettingDigitalBoundariesRoute
@@ -584,8 +769,18 @@ interface ResourcesRouteChildren {
 }
 
 const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesAgeByAgeAiConversationGuideRoute:
+    ResourcesAgeByAgeAiConversationGuideRoute,
+  ResourcesAppPrivacyReviewChecklistRoute:
+    ResourcesAppPrivacyReviewChecklistRoute,
+  ResourcesChatbotSafetyChecklistRoute: ResourcesChatbotSafetyChecklistRoute,
   ResourcesChatbotSafetyForFamiliesRoute:
     ResourcesChatbotSafetyForFamiliesRoute,
+  ResourcesDownloadsRoute: ResourcesDownloadsRoute,
+  ResourcesFamilyDigitalBoundariesPlannerRoute:
+    ResourcesFamilyDigitalBoundariesPlannerRoute,
+  ResourcesFamilyTechnologyAgreementTemplateRoute:
+    ResourcesFamilyTechnologyAgreementTemplateRoute,
   ResourcesFamilyTechnologyAgreementsRoute:
     ResourcesFamilyTechnologyAgreementsRoute,
   ResourcesHealthyScreenTimeHabitsRoute: ResourcesHealthyScreenTimeHabitsRoute,
@@ -606,6 +801,9 @@ const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
+  ContactRoute: ContactRoute,
+  EditorialPolicyRoute: EditorialPolicyRoute,
+  FaqRoute: FaqRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
