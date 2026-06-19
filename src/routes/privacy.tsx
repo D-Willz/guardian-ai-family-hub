@@ -61,7 +61,7 @@ function PrivacyPage() {
       <p>
         You can request deletion of your account and all associated data at any
         time by emailing{" "}
-        <a href="mailto:support@guardianai.app">support@guardianai.app</a>.
+        <a href="mailto:support@myguardianai.app">support@myguardianai.app</a>.
         We'll confirm within a few business days.
       </p>
 

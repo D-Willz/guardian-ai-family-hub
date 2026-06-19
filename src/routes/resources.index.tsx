@@ -1,5 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Shield, Lock, Clock, MessageCircle, FileText, Compass, ArrowRight } from "lucide-react";
+import {
+  Shield, Lock, Clock, MessageCircle, FileText, Compass,
+  ShieldCheck, ArrowRight,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -10,17 +13,16 @@ export const Route = createFileRoute("/resources/")({
       {
         name: "description",
         content:
-          "Practical guides for parents on AI safety, online privacy for kids, healthy screen-time habits, chatbot safety, family tech agreements, and digital boundaries.",
+          "Practical guides for parents on AI safety, online privacy for kids, healthy screen-time habits, chatbot safety, family tech agreements, and digital boundaries — plus free printable tools.",
       },
       { property: "og:title", content: "Family Tech Resources — Guardian AI" },
       {
         property: "og:description",
-        content:
-          "Original, parent-friendly articles on raising digitally healthy kids.",
+        content: "Original, parent-friendly articles and free tools on raising digitally healthy kids.",
       },
-      { property: "og:url", content: "https://guardian-ai-family-hub.lovable.app/resources" },
+      { property: "og:url", content: "https://www.myguardianai.app/resources" },
     ],
-    links: [{ rel: "canonical", href: "https://guardian-ai-family-hub.lovable.app/resources" }],
+    links: [{ rel: "canonical", href: "https://www.myguardianai.app/resources" }],
   }),
   component: ResourcesIndex,
 });
@@ -84,6 +86,45 @@ const articles: Article[] = [
   },
 ];
 
+const tools: Article[] = [
+  {
+    to: "/resources/family-technology-agreement-template",
+    title: "Family Technology Agreement template",
+    excerpt: "A blank, customizable template you fill out together as a family.",
+    icon: FileText,
+    tag: "Template",
+  },
+  {
+    to: "/resources/age-by-age-ai-conversation-guide",
+    title: "Age-by-Age AI Conversation Guide",
+    excerpt: "What to say about AI at every age from 5 to 17.",
+    icon: MessageCircle,
+    tag: "Guide",
+  },
+  {
+    to: "/resources/chatbot-safety-checklist",
+    title: "Chatbot Safety Checklist",
+    excerpt: "A 15-item printable checklist for setting up any AI chatbot safely.",
+    icon: ShieldCheck,
+    tag: "Checklist",
+  },
+  {
+    to: "/resources/family-digital-boundaries-planner",
+    title: "Family Digital Boundaries Planner",
+    excerpt: "A one-page planner for phone-free times, places, and weekend resets.",
+    icon: Compass,
+    tag: "Planner",
+  },
+  {
+    to: "/resources/app-privacy-review-checklist",
+    title: "App Privacy Review Checklist",
+    excerpt: "The 60-second privacy check to run on any new app before your kid uses it.",
+    icon: Lock,
+    tag: "Checklist",
+  },
+];
+
+
 function ResourcesIndex() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -145,7 +186,44 @@ function ResourcesIndex() {
             </Link>
           ))}
         </section>
+
+        <div className="mt-16 flex items-end justify-between">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Free family tech tools
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Printable templates, checklists, and planners — no login required.
+            </p>
+          </div>
+          <Link to="/resources/downloads" className="text-sm font-medium text-primary hover:underline">
+            View all tools →
+          </Link>
+        </div>
+        <section className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {tools.map(({ to, title, excerpt, icon: Icon, tag }) => (
+            <Link
+              key={to}
+              to={to}
+              className="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Icon className="h-5 w-5" />
+              </div>
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                {tag}
+              </span>
+              <h3 className="mt-1.5 text-base font-semibold text-foreground">{title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{excerpt}</p>
+              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                Open tool
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          ))}
+        </section>
       </main>
+
 
       <SiteFooter />
     </div>

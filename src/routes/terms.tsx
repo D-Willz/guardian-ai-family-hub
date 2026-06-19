@@ -57,7 +57,7 @@ function TermsPage() {
       <h2>Questions</h2>
       <p>
         If anything here is unclear, reach out at{" "}
-        <a href="mailto:support@guardianai.app">support@guardianai.app</a>.
+        <a href="mailto:support@myguardianai.app">support@myguardianai.app</a>.
       </p>
 
       <p className="text-xs text-muted-foreground/80">
