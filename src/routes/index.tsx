@@ -40,7 +40,6 @@ export const Route = createFileRoute("/")({
           name: "Guardian AI",
           url: "https://www.myguardianai.app",
           logo: "https://www.myguardianai.app/favicon.ico",
-          founder: { "@type": "Person", name: "Willie Dampier Jr." },
           description:
             "An AI-powered parental companion that helps families build healthier digital habits.",
         }),
