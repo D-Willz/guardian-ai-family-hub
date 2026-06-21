@@ -261,19 +261,18 @@ function Landing() {
               <BookOpen className="h-16 w-16" />
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-primary">Meet the founder</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Hi, I'm Willie Dampier Jr.</h2>
+              <p className="text-xs font-semibold uppercase tracking-wide text-primary">About Guardian AI</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Built by a parent-led team</h2>
               <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                Guardian AI started because I got tired of choosing between
-                cold surveillance apps and doing nothing at all. Most
-                parental-control tools treat kids like suspects and parents
-                like wardens. I wanted something calmer — built around
+                Guardian AI started because families deserved something
+                calmer than cold surveillance apps — built around
                 conversation, written in plain language, and grounded in
-                trust. Everything you read here is something I'd want my
-                own family to read.
+                trust. Every article you read here is something we'd want
+                our own families to read. Learn more about who we are and
+                meet our founder on the About page.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Link to="/about"><Button variant="outline" size="sm">More about Guardian AI</Button></Link>
+                <Link to="/about"><Button variant="outline" size="sm">About Guardian AI</Button></Link>
                 <Link to="/contact"><Button variant="ghost" size="sm">Get in touch</Button></Link>
               </div>
             </div>
