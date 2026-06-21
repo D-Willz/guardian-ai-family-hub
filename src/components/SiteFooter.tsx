@@ -50,7 +50,7 @@ export function SiteFooter() {
           </div>
         </div>
         <p className="border-t border-border pt-4 text-center text-xs">
-          © {new Date().getFullYear()} Guardian AI. Made for families by Willie Dampier Jr.
+          © {new Date().getFullYear()} Guardian AI. Made for families.
         </p>
       </div>
     </footer>
