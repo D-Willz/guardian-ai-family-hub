@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MarketingLayout } from "@/components/MarketingLayout";
 import { ArticleMeta, RelatedArticles } from "@/components/ArticleMeta";
+import { PrintButton } from "@/components/PrintButton";
 
 export const Route = createFileRoute("/resources/family-digital-boundaries-planner")({
   head: () => ({
@@ -32,6 +33,7 @@ function Tool() {
   return (
     <MarketingLayout title="Family Digital Boundaries Planner">
       <ArticleMeta published="June 19, 2026" reviewed="June 19, 2026" />
+      <PrintButton />
       <p>
         Fill this out together. The boundaries that work are predictable,
         fair, and followed by the whole family — including the adults.

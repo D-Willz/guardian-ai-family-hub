@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MarketingLayout } from "@/components/MarketingLayout";
 import { ArticleMeta, RelatedArticles } from "@/components/ArticleMeta";
+import { PrintButton } from "@/components/PrintButton";
 
 export const Route = createFileRoute("/resources/app-privacy-review-checklist")({
   head: () => ({
@@ -37,6 +38,7 @@ function Tool() {
   return (
     <MarketingLayout title="App Privacy Review Checklist">
       <ArticleMeta published="June 19, 2026" reviewed="June 19, 2026" />
+      <PrintButton />
       <p>
         Run this checklist the first time your kid installs any new app.
         With practice it takes 60 seconds — and it catches most of the
