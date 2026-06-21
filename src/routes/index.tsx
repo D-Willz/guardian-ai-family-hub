@@ -233,7 +233,7 @@ function Landing() {
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {[
-              ["Written by a parent, not a marketing team", "Every article is written by Willie Dampier Jr., Guardian AI's founder — a parent figuring this out in real time."],
+              ["Written and reviewed by the Guardian AI team", "Every article is written and reviewed by the Guardian AI Editorial Team — parents and researchers focused on healthier family technology habits."],
               ["No fabricated stats or fake experts", "We cite primary sources, label anecdotes as anecdotes, and never use AI to invent studies, quotes, or credentials."],
               ["Trust over surveillance", "We don't sell ourselves on tracking your kids. We help families talk about tech together."],
               ["Reviewed and dated", "Every article carries a published and last-reviewed date. If something's outdated, we fix it openly."],
