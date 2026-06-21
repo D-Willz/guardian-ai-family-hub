@@ -40,7 +40,6 @@ export const Route = createFileRoute("/")({
           name: "Guardian AI",
           url: "https://www.myguardianai.app",
           logo: "https://www.myguardianai.app/favicon.ico",
-          founder: { "@type": "Person", name: "Willie Dampier Jr." },
           description:
             "An AI-powered parental companion that helps families build healthier digital habits.",
         }),
@@ -234,7 +233,7 @@ function Landing() {
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {[
-              ["Written by a parent, not a marketing team", "Every article is written by Willie Dampier Jr., Guardian AI's founder — a parent figuring this out in real time."],
+              ["Written and reviewed by the Guardian AI team", "Every article is written and reviewed by the Guardian AI Editorial Team — parents and researchers focused on healthier family technology habits."],
               ["No fabricated stats or fake experts", "We cite primary sources, label anecdotes as anecdotes, and never use AI to invent studies, quotes, or credentials."],
               ["Trust over surveillance", "We don't sell ourselves on tracking your kids. We help families talk about tech together."],
               ["Reviewed and dated", "Every article carries a published and last-reviewed date. If something's outdated, we fix it openly."],
@@ -262,19 +261,18 @@ function Landing() {
               <BookOpen className="h-16 w-16" />
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-primary">Meet the founder</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Hi, I'm Willie Dampier Jr.</h2>
+              <p className="text-xs font-semibold uppercase tracking-wide text-primary">About Guardian AI</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Built by a parent-led team</h2>
               <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                Guardian AI started because I got tired of choosing between
-                cold surveillance apps and doing nothing at all. Most
-                parental-control tools treat kids like suspects and parents
-                like wardens. I wanted something calmer — built around
+                Guardian AI started because families deserved something
+                calmer than cold surveillance apps — built around
                 conversation, written in plain language, and grounded in
-                trust. Everything you read here is something I'd want my
-                own family to read.
+                trust. Every article you read here is something we'd want
+                our own families to read. Learn more about who we are and
+                meet our founder on the About page.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Link to="/about"><Button variant="outline" size="sm">More about Guardian AI</Button></Link>
+                <Link to="/about"><Button variant="outline" size="sm">About Guardian AI</Button></Link>
                 <Link to="/contact"><Button variant="ghost" size="sm">Get in touch</Button></Link>
               </div>
             </div>
@@ -290,7 +288,7 @@ function Landing() {
           <div className="mx-auto mt-10 max-w-3xl space-y-4">
             {[
               ["Is Guardian AI free?", "All of our articles, checklists, templates, and planners are free and require no login. The Guardian AI parent dashboard is a separate optional product."],
-              ["Who writes the articles?", "Willie Dampier Jr., Guardian AI's founder. AI tools may help with brainstorming or clarity edits — never with inventing facts."],
+              ["Who writes the articles?", "Guardian AI's Editorial Team writes and reviews every article. AI tools may help with brainstorming or clarity edits — never with inventing facts. Our founder is identified on the About page."],
               ["What age range is this for?", "Most useful for parents of kids ages 5 to 18. Many articles include age-specific notes for younger children, tweens, and teens."],
               ["Do you sell my data?", "No. See our Privacy Policy for what we collect and why."],
             ].map(([q, a]) => (

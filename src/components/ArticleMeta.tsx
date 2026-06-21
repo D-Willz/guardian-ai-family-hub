@@ -9,15 +9,15 @@ export function ArticleMeta({ published, reviewed, readingTime }: ArticleMetaPro
     <div className="not-prose no-print mb-6 rounded-xl border border-border bg-card/50 p-4 text-sm">
       <p className="font-medium text-foreground">
         By{" "}
-        <a href="/about" className="text-primary underline">
-          Willie Dampier Jr.
+        <a href="/editorial-policy" className="text-primary underline">
+          Guardian AI Editorial Team
         </a>
       </p>
       <p className="mt-1 text-muted-foreground">
-        Founder, Guardian AI — parent researching healthier family technology habits.
+        Reviewed by Guardian AI — practical, parent-facing guidance for healthier family technology habits.
       </p>
       <p className="mt-2 text-xs text-muted-foreground">
-        Published {published} · Last reviewed {reviewed}
+        Published {published} · Last reviewed {reviewed} by Guardian AI
         {readingTime ? ` · ${readingTime}` : ""}
       </p>
     </div>

@@ -36,11 +36,13 @@ function EditorialPage() {
 
       <h2>Who we are</h2>
       <p>
-        Guardian AI is an independent project founded by{" "}
-        <strong>Willie Dampier Jr.</strong>, a parent researching healthier
-        family technology habits. Willie writes and edits every published
-        article. Guardian AI is not affiliated with any device manufacturer,
-        carrier, school system, or research institution.
+        Guardian AI content is created and reviewed by the{" "}
+        <strong>Guardian AI Editorial Team</strong> — parents and
+        researchers focused on healthier family technology habits. For
+        transparency, our founder is identified on the{" "}
+        <a href="/about">About page</a>. Guardian AI is independent and
+        not affiliated with any device manufacturer, carrier, school
+        system, or research institution.
       </p>
 
       <h2>What we publish</h2>
