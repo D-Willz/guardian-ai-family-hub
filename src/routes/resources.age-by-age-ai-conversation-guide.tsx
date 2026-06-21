@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MarketingLayout } from "@/components/MarketingLayout";
 import { ArticleMeta, RelatedArticles } from "@/components/ArticleMeta";
+import { PrintButton } from "@/components/PrintButton";
 
 export const Route = createFileRoute("/resources/age-by-age-ai-conversation-guide")({
   head: () => ({
@@ -28,6 +29,7 @@ function Tool() {
   return (
     <MarketingLayout title="Age-by-Age AI Conversation Guide">
       <ArticleMeta published="June 19, 2026" reviewed="June 19, 2026" />
+      <PrintButton />
       <p>
         A practical guide for what to say about AI at every age — and what
         questions to ask. Pick the section that matches your child and use

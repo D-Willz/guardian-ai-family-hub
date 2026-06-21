@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { FileText, MessageCircle, ShieldCheck, Compass, Lock, ArrowRight, Shield } from "lucide-react";
+import { FileText, MessageCircle, ShieldCheck, Compass, Lock, ArrowRight, Shield, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -81,6 +81,14 @@ function DownloadsPage() {
             Printable, no-login templates and checklists you can use with your
             family tonight. Designed to spark conversation — not replace it.
           </p>
+          <div className="mt-6 flex justify-center">
+            <Link to="/resources/downloads/print-all">
+              <Button size="sm" variant="outline">
+                <Printer className="h-4 w-4" />
+                Print all tools
+              </Button>
+            </Link>
+          </div>
         </div>
         <section className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {tools.map(({ to, title, excerpt, icon: Icon }) => (

@@ -142,3 +142,63 @@
     color: var(--color-foreground);
   }
 }
+
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  main,
+  .print-area {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: #000 !important;
+  }
+
+  .print-area h1,
+  .print-area h2,
+  .print-area h3,
+  .print-area p,
+  .print-area li,
+  .print-area span,
+  .print-area strong,
+  .print-area em,
+  .print-area div {
+    color: #000 !important;
+  }
+
+  .print-area a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  .print-area .border-dashed {
+    border-color: #000 !important;
+  }
+  .print-area .border,
+  .print-area .border-border {
+    border-color: #000 !important;
+    background: #fff !important;
+  }
+
+  .print-tool {
+    page-break-after: always;
+    break-after: page;
+  }
+  .print-tool:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  @page {
+    margin: 0.6in;
+  }
+}

@@ -12,7 +12,7 @@ export function MarketingLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
+      <header className="no-print mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
         <Link to="/" className="flex items-center gap-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
             <Shield className="h-5 w-5" />
@@ -33,7 +33,7 @@ export function MarketingLayout({
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
+      <main className="print-area mx-auto w-full max-w-3xl flex-1 px-6 py-10">
         <h1 className="mb-8 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
           {title}
         </h1>
@@ -42,7 +42,9 @@ export function MarketingLayout({
         </div>
       </main>
 
-      <SiteFooter />
+      <div className="no-print">
+        <SiteFooter />
+      </div>
     </div>
   );
 }

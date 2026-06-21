@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MarketingLayout } from "@/components/MarketingLayout";
 import { ArticleMeta, RelatedArticles } from "@/components/ArticleMeta";
+import { PrintButton } from "@/components/PrintButton";
 
 export const Route = createFileRoute("/resources/family-technology-agreement-template")({
   head: () => ({
@@ -41,6 +42,7 @@ function Tool() {
   return (
     <MarketingLayout title="Family Technology Agreement template">
       <ArticleMeta published="June 19, 2026" reviewed="June 19, 2026" readingTime="Print in 1 page" />
+      <PrintButton />
       <p>
         Print this page or copy the headings into a shared document. Fill it
         out <em>together</em> — every section should reflect what the whole

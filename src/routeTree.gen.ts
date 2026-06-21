@@ -42,6 +42,7 @@ import { Route as AppContractsRouteImport } from './routes/_app/contracts'
 import { Route as AppBehaviorAlertsRouteImport } from './routes/_app/behavior-alerts'
 import { Route as AppAppMonitoringRouteImport } from './routes/_app/app-monitoring'
 import { Route as AppWellnessIndexRouteImport } from './routes/_app/wellness.index'
+import { Route as ResourcesDownloadsPrintAllRouteImport } from './routes/resources.downloads.print-all'
 import { Route as AppWellnessReportIdRouteImport } from './routes/_app/wellness.$reportId'
 import { Route as AppChildChildIdRouteImport } from './routes/_app/child.$childId'
 
@@ -220,6 +221,12 @@ const AppWellnessIndexRoute = AppWellnessIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppWellnessRoute,
 } as any)
+const ResourcesDownloadsPrintAllRoute =
+  ResourcesDownloadsPrintAllRouteImport.update({
+    id: '/print-all',
+    path: '/print-all',
+    getParentRoute: () => ResourcesDownloadsRoute,
+  } as any)
 const AppWellnessReportIdRoute = AppWellnessReportIdRouteImport.update({
   id: '/$reportId',
   path: '/$reportId',
@@ -254,7 +261,7 @@ export interface FileRoutesByFullPath {
   '/resources/app-privacy-review-checklist': typeof ResourcesAppPrivacyReviewChecklistRoute
   '/resources/chatbot-safety-checklist': typeof ResourcesChatbotSafetyChecklistRoute
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
-  '/resources/downloads': typeof ResourcesDownloadsRoute
+  '/resources/downloads': typeof ResourcesDownloadsRouteWithChildren
   '/resources/family-digital-boundaries-planner': typeof ResourcesFamilyDigitalBoundariesPlannerRoute
   '/resources/family-technology-agreement-template': typeof ResourcesFamilyTechnologyAgreementTemplateRoute
   '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
@@ -265,6 +272,7 @@ export interface FileRoutesByFullPath {
   '/resources/': typeof ResourcesIndexRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
+  '/resources/downloads/print-all': typeof ResourcesDownloadsPrintAllRoute
   '/wellness/': typeof AppWellnessIndexRoute
 }
 export interface FileRoutesByTo {
@@ -288,7 +296,7 @@ export interface FileRoutesByTo {
   '/resources/app-privacy-review-checklist': typeof ResourcesAppPrivacyReviewChecklistRoute
   '/resources/chatbot-safety-checklist': typeof ResourcesChatbotSafetyChecklistRoute
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
-  '/resources/downloads': typeof ResourcesDownloadsRoute
+  '/resources/downloads': typeof ResourcesDownloadsRouteWithChildren
   '/resources/family-digital-boundaries-planner': typeof ResourcesFamilyDigitalBoundariesPlannerRoute
   '/resources/family-technology-agreement-template': typeof ResourcesFamilyTechnologyAgreementTemplateRoute
   '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
@@ -299,6 +307,7 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesIndexRoute
   '/child/$childId': typeof AppChildChildIdRoute
   '/wellness/$reportId': typeof AppWellnessReportIdRoute
+  '/resources/downloads/print-all': typeof ResourcesDownloadsPrintAllRoute
   '/wellness': typeof AppWellnessIndexRoute
 }
 export interface FileRoutesById {
@@ -326,7 +335,7 @@ export interface FileRoutesById {
   '/resources/app-privacy-review-checklist': typeof ResourcesAppPrivacyReviewChecklistRoute
   '/resources/chatbot-safety-checklist': typeof ResourcesChatbotSafetyChecklistRoute
   '/resources/chatbot-safety-for-families': typeof ResourcesChatbotSafetyForFamiliesRoute
-  '/resources/downloads': typeof ResourcesDownloadsRoute
+  '/resources/downloads': typeof ResourcesDownloadsRouteWithChildren
   '/resources/family-digital-boundaries-planner': typeof ResourcesFamilyDigitalBoundariesPlannerRoute
   '/resources/family-technology-agreement-template': typeof ResourcesFamilyTechnologyAgreementTemplateRoute
   '/resources/family-technology-agreements': typeof ResourcesFamilyTechnologyAgreementsRoute
@@ -337,6 +346,7 @@ export interface FileRoutesById {
   '/resources/': typeof ResourcesIndexRoute
   '/_app/child/$childId': typeof AppChildChildIdRoute
   '/_app/wellness/$reportId': typeof AppWellnessReportIdRoute
+  '/resources/downloads/print-all': typeof ResourcesDownloadsPrintAllRoute
   '/_app/wellness/': typeof AppWellnessIndexRoute
 }
 export interface FileRouteTypes {
@@ -375,6 +385,7 @@ export interface FileRouteTypes {
     | '/resources/'
     | '/child/$childId'
     | '/wellness/$reportId'
+    | '/resources/downloads/print-all'
     | '/wellness/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -409,6 +420,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/child/$childId'
     | '/wellness/$reportId'
+    | '/resources/downloads/print-all'
     | '/wellness'
   id:
     | '__root__'
@@ -446,6 +458,7 @@ export interface FileRouteTypes {
     | '/resources/'
     | '/_app/child/$childId'
     | '/_app/wellness/$reportId'
+    | '/resources/downloads/print-all'
     | '/_app/wellness/'
   fileRoutesById: FileRoutesById
 }
@@ -697,6 +710,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWellnessIndexRouteImport
       parentRoute: typeof AppWellnessRoute
     }
+    '/resources/downloads/print-all': {
+      id: '/resources/downloads/print-all'
+      path: '/print-all'
+      fullPath: '/resources/downloads/print-all'
+      preLoaderRoute: typeof ResourcesDownloadsPrintAllRouteImport
+      parentRoute: typeof ResourcesDownloadsRoute
+    }
     '/_app/wellness/$reportId': {
       id: '/_app/wellness/$reportId'
       path: '/$reportId'
@@ -752,12 +772,23 @@ const AppRouteChildren: AppRouteChildren = {
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
+interface ResourcesDownloadsRouteChildren {
+  ResourcesDownloadsPrintAllRoute: typeof ResourcesDownloadsPrintAllRoute
+}
+
+const ResourcesDownloadsRouteChildren: ResourcesDownloadsRouteChildren = {
+  ResourcesDownloadsPrintAllRoute: ResourcesDownloadsPrintAllRoute,
+}
+
+const ResourcesDownloadsRouteWithChildren =
+  ResourcesDownloadsRoute._addFileChildren(ResourcesDownloadsRouteChildren)
+
 interface ResourcesRouteChildren {
   ResourcesAgeByAgeAiConversationGuideRoute: typeof ResourcesAgeByAgeAiConversationGuideRoute
   ResourcesAppPrivacyReviewChecklistRoute: typeof ResourcesAppPrivacyReviewChecklistRoute
   ResourcesChatbotSafetyChecklistRoute: typeof ResourcesChatbotSafetyChecklistRoute
   ResourcesChatbotSafetyForFamiliesRoute: typeof ResourcesChatbotSafetyForFamiliesRoute
-  ResourcesDownloadsRoute: typeof ResourcesDownloadsRoute
+  ResourcesDownloadsRoute: typeof ResourcesDownloadsRouteWithChildren
   ResourcesFamilyDigitalBoundariesPlannerRoute: typeof ResourcesFamilyDigitalBoundariesPlannerRoute
   ResourcesFamilyTechnologyAgreementTemplateRoute: typeof ResourcesFamilyTechnologyAgreementTemplateRoute
   ResourcesFamilyTechnologyAgreementsRoute: typeof ResourcesFamilyTechnologyAgreementsRoute
@@ -776,7 +807,7 @@ const ResourcesRouteChildren: ResourcesRouteChildren = {
   ResourcesChatbotSafetyChecklistRoute: ResourcesChatbotSafetyChecklistRoute,
   ResourcesChatbotSafetyForFamiliesRoute:
     ResourcesChatbotSafetyForFamiliesRoute,
-  ResourcesDownloadsRoute: ResourcesDownloadsRoute,
+  ResourcesDownloadsRoute: ResourcesDownloadsRouteWithChildren,
   ResourcesFamilyDigitalBoundariesPlannerRoute:
     ResourcesFamilyDigitalBoundariesPlannerRoute,
   ResourcesFamilyTechnologyAgreementTemplateRoute:

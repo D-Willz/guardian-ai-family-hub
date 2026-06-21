@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MarketingLayout } from "@/components/MarketingLayout";
 import { ArticleMeta, RelatedArticles } from "@/components/ArticleMeta";
+import { PrintButton } from "@/components/PrintButton";
 
 export const Route = createFileRoute("/resources/chatbot-safety-checklist")({
   head: () => ({
@@ -37,6 +38,7 @@ function Tool() {
   return (
     <MarketingLayout title="Chatbot Safety Checklist">
       <ArticleMeta published="June 19, 2026" reviewed="June 19, 2026" />
+      <PrintButton />
       <p>
         Run through this checklist the first time your kid uses any AI
         chatbot (homework helpers, image generators, "AI friend" apps,
