@@ -8,7 +8,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "Who writes the articles?",
-    a: "Articles are written and edited by Willie Dampier Jr., Guardian AI's founder. AI tools are sometimes used to brainstorm or pressure-test ideas, but every final article is written by a person. See our editorial policy for details.",
+    a: "Articles are written and reviewed by the Guardian AI Editorial Team. AI tools are sometimes used to brainstorm or pressure-test ideas, but every final article is reviewed by a person. Our founder is identified on the About page. See our editorial policy for details.",
   },
   {
     q: "Is Guardian AI free?",
