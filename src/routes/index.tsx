@@ -288,7 +288,7 @@ function Landing() {
           <div className="mx-auto mt-10 max-w-3xl space-y-4">
             {[
               ["Is Guardian AI free?", "All of our articles, checklists, templates, and planners are free and require no login. The Guardian AI parent dashboard is a separate optional product."],
-              ["Who writes the articles?", "Willie Dampier Jr., Guardian AI's founder. AI tools may help with brainstorming or clarity edits — never with inventing facts."],
+              ["Who writes the articles?", "Guardian AI's Editorial Team writes and reviews every article. AI tools may help with brainstorming or clarity edits — never with inventing facts. Our founder is identified on the About page."],
               ["What age range is this for?", "Most useful for parents of kids ages 5 to 18. Many articles include age-specific notes for younger children, tweens, and teens."],
               ["Do you sell my data?", "No. See our Privacy Policy for what we collect and why."],
             ].map(([q, a]) => (
