@@ -30,27 +30,15 @@ function ContactPage() {
         though it may take a few days to reply.
       </p>
 
-      <h2>Choose the right inbox</h2>
+      <h2>Get in touch</h2>
       <ul className="ml-5 list-disc space-y-2">
         <li>
-          <strong>General questions and feedback:</strong>{" "}
+          <strong>General questions, feedback, media, and partnerships:</strong>{" "}
           <a href="mailto:hello@myguardianai.app">hello@myguardianai.app</a>
         </li>
         <li>
-          <strong>Account, billing, and product support:</strong>{" "}
+          <strong>Account help, billing, technical support, corrections, and privacy requests:</strong>{" "}
           <a href="mailto:support@myguardianai.app">support@myguardianai.app</a>
-        </li>
-        <li>
-          <strong>Corrections or factual errors:</strong>{" "}
-          <a href="mailto:corrections@myguardianai.app">corrections@myguardianai.app</a>
-        </li>
-        <li>
-          <strong>Press, interviews, and partnerships:</strong>{" "}
-          <a href="mailto:press@myguardianai.app">press@myguardianai.app</a>
-        </li>
-        <li>
-          <strong>Privacy requests (access, deletion, questions):</strong>{" "}
-          <a href="mailto:privacy@myguardianai.app">privacy@myguardianai.app</a>
         </li>
       </ul>
 
