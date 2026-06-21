@@ -6,7 +6,7 @@ interface ArticleMetaProps {
 
 export function ArticleMeta({ published, reviewed, readingTime }: ArticleMetaProps) {
   return (
-    <div className="not-prose mb-6 rounded-xl border border-border bg-card/50 p-4 text-sm">
+    <div className="not-prose no-print mb-6 rounded-xl border border-border bg-card/50 p-4 text-sm">
       <p className="font-medium text-foreground">
         By{" "}
         <a href="/about" className="text-primary underline">
@@ -31,7 +31,7 @@ interface RelatedLink {
 
 export function RelatedArticles({ links }: { links: RelatedLink[] }) {
   return (
-    <div className="not-prose mt-10 rounded-xl border border-border bg-card/50 p-5">
+    <div className="not-prose no-print mt-10 rounded-xl border border-border bg-card/50 p-5">
       <h2 className="mb-3 text-base font-semibold text-foreground">Related articles</h2>
       <ul className="space-y-1.5 text-sm">
         {links.map((l) => (
@@ -54,7 +54,7 @@ interface Source {
 
 export function Sources({ items }: { items: Source[] }) {
   return (
-    <div className="not-prose mt-8">
+    <div className="not-prose no-print mt-8">
       <h2 className="mb-3 text-lg font-semibold text-foreground">Sources & further reading</h2>
       <ul className="space-y-2 text-sm text-muted-foreground">
         {items.map((s) => (
