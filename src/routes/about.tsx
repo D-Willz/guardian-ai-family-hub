@@ -114,7 +114,7 @@ function AboutPage() {
       <p>
         If you find an error — a broken link, an outdated statistic, advice
         that hasn't aged well, or anything that feels off — email{" "}
-        <a href="mailto:corrections@myguardianai.app">corrections@myguardianai.app</a>.
+        <a href="mailto:support@myguardianai.app">support@myguardianai.app</a>.
         We read every message. When we correct something material, we add a
         dated note at the bottom of the article so the change is visible.
       </p>

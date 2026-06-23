@@ -36,7 +36,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How do I report a mistake?",
-    a: "Email corrections@myguardianai.app with the article URL and what's wrong. When we make a material correction, we add a dated note at the bottom of the article.",
+    a: "Email support@myguardianai.app with the article URL and what's wrong. When we make a material correction, we add a dated note at the bottom of the article.",
   },
   {
     q: "Do you take advertising or sponsorships?",

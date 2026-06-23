@@ -106,8 +106,8 @@ function EditorialPage() {
         When we make a material correction, we add a dated note at the
         bottom of the article describing what changed. We do not silently
         edit substantive claims. To report a mistake, email{" "}
-        <a href="mailto:corrections@myguardianai.app">
-          corrections@myguardianai.app
+        <a href="mailto:support@myguardianai.app">
+          support@myguardianai.app
         </a>
         .
       </p>
