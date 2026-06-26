@@ -10,4 +10,4 @@ Disallow: /app-monitoring
 Disallow: /child/
 Disallow: /c/
 
-Sitemap: https://guardian-ai-family-hub.lovable.app/sitemap.xml
+Sitemap: https://myguardianai.app/sitemap.xml
